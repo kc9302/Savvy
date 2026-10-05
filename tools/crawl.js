@@ -37,6 +37,8 @@ function parse(h){
   fs.writeFileSync(CACHE,JSON.stringify(cache));
   let ok=0;
   for(const x of data){const p=cache[get(x,"URL")];if(!p||p.fail)continue;ok++;
+    const am=get(x,"캡션").match(/^(?:Photo|Video|Reel)?\s*(?:by|shared by)\s+(.+?)\s+on\s+([A-Z][a-z]+ [0-9]{1,2}, [0-9]{4})/); // 캡션을 덮어쓰기 전에 설명 문구의 게시일을 챙긴다
+    if(am){const t=Date.parse(am[2]);if(t)x.timestamp=t/1000}
     for(const l of x.label_values){if(l.label==="제목")l.value=p.user;if(l.label==="캡션"&&p.caption)l.value=p.caption}}
   fs.writeFileSync(OUT,JSON.stringify(data));
   console.log("완료: 채워진 항목",ok,"실패",Object.values(cache).filter(v=>v.fail).length);

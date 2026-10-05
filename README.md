@@ -61,6 +61,16 @@ node tools/crawl.js <saved_posts.json>
 
 결과는 현재 폴더의 `saved_posts_enriched.json`에 저장됩니다.
 
+## 내 데이터를 미리 담은 개인용 페이지
+
+파일을 고르는 단계 없이 열자마자 내 저장 목록이 보이는 페이지를 만들 수 있습니다.
+
+```bash
+node tools/build-personal.js <saved_posts.json> [crawl_cache.json] [my-saved-map.html]
+```
+
+결과 파일에는 내 저장 목록이 그대로 들어 있습니다. `.gitignore`가 `my-saved-map*`을 막지만, 어디에도 공개하지 마세요.
+
 ## 개인정보
 
 - 페이지는 선택한 파일을 서버로 보내지 않습니다. 분류 수정과 규칙은 브라우저 저장소에만 남습니다.

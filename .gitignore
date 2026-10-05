@@ -2,6 +2,7 @@
 saved_posts*.json
 saved_collections*.json
 crawl_cache.json
+my-saved-map*
 *.zip
 instagram-*/
 
