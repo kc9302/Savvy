@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>저장됨 취향 지도</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Noto+Sans+KR:wght@400;500;700&display=swap">
+<style>
+/* 레이아웃: 폰 한 줄 기준. 불러오기 → 요약 → 주제별 막대 → 저장 빈도 → 카드 목록. 포인트는 로즈 한 색. */
+:root{
+  --bg:#F5F6F8;--surface:#FFFFFF;--ink:#15171C;--mut:#5F6676;--line:#E2E5EB;--track:#E9ECF1;
+  --accent:#D6285B;--accent-ink:#FFFFFF;--accent-soft:#FCE6EE;
+  --display:'Do Hyeon','Noto Sans KR',system-ui,sans-serif;
+  --body:'Noto Sans KR',system-ui,-apple-system,'Segoe UI','Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0F1115;--surface:#171A21;--ink:#ECEEF3;--mut:#9AA3B2;--line:#2A2F3A;--track:#232834;
+  --accent:#FF6B93;--accent-ink:#1A0A10;--accent-soft:#3A1B26;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0F1115;--surface:#171A21;--ink:#ECEEF3;--mut:#9AA3B2;--line:#2A2F3A;--track:#232834;
+  --accent:#FF6B93;--accent-ink:#1A0A10;--accent-soft:#3A1B26;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 15px/1.55 var(--body)}
+.wrap{max-width:720px;margin:0 auto;padding-inline:16px;padding-block:24px 64px;display:grid;gap:28px}
+.wrap>*{min-width:0}
+h1{font:400 32px/1.15 var(--display);margin:0;letter-spacing:.01em;text-wrap:balance}
+h2{font:400 21px/1.2 var(--display);margin:0 0 10px;letter-spacing:.01em}
+p{margin:0}
+.sub{color:var(--mut);margin-top:6px}
+.priv{margin-top:10px;font-size:13px;color:var(--mut);border-left:3px solid var(--accent);padding-left:10px}
+.btn{font:inherit;font-weight:500;min-height:44px;padding:10px 16px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.btn.pri{background:var(--accent);color:var(--accent-ink);border-color:transparent}
+.btn.sm{min-height:36px;padding:6px 12px;font-size:13px}
+.btn:focus-visible,select:focus-visible,input:focus-visible,textarea:focus-visible,.cat:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+#drop{border:1.5px dashed var(--line);border-radius:12px;padding:16px;display:grid;gap:10px;justify-items:start}
+#drop.over{border-color:var(--accent);background:var(--accent-soft)}
+.hint{font-size:13px;color:var(--mut)}
+details summary{cursor:pointer;font-weight:500;min-height:32px;display:flex;align-items:center}
+details ol{margin:6px 0 0;padding-left:20px;display:grid;gap:4px}
+#msg{font-size:14px}
+#msg:not(:empty){background:var(--accent-soft);border-radius:10px;padding:10px 12px}
+#banner{font-size:13px;color:var(--mut);border:1px dashed var(--line);border-radius:10px;padding:8px 12px}
+.big{font:400 56px/1 var(--display);color:var(--accent);font-variant-numeric:tabular-nums}
+.big span{font-size:20px;color:var(--ink);margin-left:6px}
+.sum{display:grid;gap:8px}
+.cats{display:grid;gap:2px}
+.cat{display:grid;grid-template-columns:minmax(0,7.5rem) minmax(0,1fr) 3.2rem;gap:10px;align-items:center;width:100%;text-align:left;min-height:44px;padding:6px 10px;border-radius:8px;border:1px solid transparent;background:none;color:inherit;font:inherit;cursor:pointer}
+.cat[aria-pressed="true"]{border-color:var(--ink);background:var(--surface)}
+.cat .nm{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cat .b{height:8px;background:var(--track);border-radius:4px;overflow:hidden}
+.cat .b i{display:block;height:100%;background:var(--accent);border-radius:4px}
+.cat .n{text-align:right;color:var(--mut);font-variant-numeric:tabular-nums}
+.seg{display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:transparent}
+.bars{display:flex;align-items:flex-end;gap:1px;height:104px;border-bottom:1px solid var(--line);touch-action:pan-y;cursor:crosshair}
+.bars i{flex:1;min-width:0;background:var(--accent);border-radius:1px 1px 0 0;opacity:.85}
+.bars i.on{opacity:1;background:var(--ink)}
+.rng{display:flex;justify-content:space-between;font-size:12px;color:var(--mut);margin-top:4px;font-variant-numeric:tabular-nums}
+#chartInfo{font-size:13px;color:var(--mut);margin-top:6px;min-height:1.5em}
+.bar2{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
+input[type=search]{font:inherit;flex:1;min-width:0;min-height:44px;padding:8px 12px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+.chip{display:inline-flex;gap:6px;align-items:center;background:var(--accent-soft);border-radius:999px;padding:4px 6px 4px 12px;font-size:13px}
+.chip button{border:0;background:none;color:inherit;font:inherit;cursor:pointer;min-width:28px;min-height:28px}
+.list{display:grid;gap:10px}
+.item{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:grid;gap:8px}
+.meta{display:flex;gap:4px 10px;flex-wrap:wrap;color:var(--mut);font-size:13px;font-variant-numeric:tabular-nums}
+.cap{overflow-wrap:anywhere;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;cursor:pointer}
+.cap.open{display:block}
+.act{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+select{font:inherit;min-height:40px;max-width:62%;padding:6px 8px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
+a.go{color:var(--accent);font-weight:500;text-decoration:none;min-height:40px;display:inline-flex;align-items:center}
+textarea{width:100%;min-height:220px;font:13px/1.5 ui-monospace,Menlo,Consolas,monospace;padding:10px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+@media (prefers-reduced-motion:no-preference){.cat .b i{transition:width .3s}}
+</style>
+</head><body>
+<main class="wrap">
+  <header>
+    <h1>저장됨 취향 지도</h1>
+    <p class="sub">인스타그램에 저장해 둔 게시물을 주제별로 나누고, 언제 많이 저장했는지 보여줍니다.</p>
+    <p class="priv">파일은 이 기기의 브라우저 안에서만 읽습니다. 어디로도 전송하지 않습니다.</p>
+  </header>
+
+  <section id="drop" aria-labelledby="loadH">
+    <h2 id="loadH" style="margin:0">내 저장 목록 불러오기</h2>
+    <input id="file" type="file" multiple hidden accept=".zip,.json,.html,.htm,application/zip,application/json,text/html">
+    <button class="btn pri" id="pick" type="button">내보내기 파일 선택</button>
+    <p class="hint">인스타에서 받은 ZIP을 그대로 고르면 됩니다. 압축을 풀 필요가 없습니다. JSON이나 HTML 파일도 읽습니다.</p>
+    <details>
+      <summary>파일 받는 방법 (폰)</summary>
+      <ol class="hint">
+        <li>인스타 앱 프로필에서 메뉴 → 설정 및 활동 → 계정 센터</li>
+        <li>내 정보 및 권한 → 내 정보 다운로드 → 정보 다운로드 또는 전송</li>
+        <li>저장한 계정을 고르고 일부 정보에서 저장됨만 선택</li>
+        <li>기기에 다운로드, 기간은 전체 기간, 형식은 JSON(권장), 미디어 품질은 낮음</li>
+        <li>준비되면 알림이나 메일의 링크로 ZIP을 폰에 받고, 위 버튼으로 고르기</li>
+      </ol>
+      <p class="hint" style="margin-top:6px">메뉴 이름은 앱 버전에 따라 조금 다를 수 있습니다. 저장한 계정과 같은 계정으로 요청해야 합니다. HTML 형식은 읽기만 시도하며 아직 실제 파일로 확인하지 못했습니다.</p>
+    </details>
+  </section>
+
+  <div id="msg" role="status" aria-live="polite"></div>
+  <div id="banner">지금 보이는 것은 예시 데이터입니다. 내 파일을 고르면 내 저장 목록으로 바뀝니다.</div>
+
+  <section aria-labelledby="sumH">
+    <h2 id="sumH">한눈에</h2>
+    <div class="sum" id="sum"></div>
+  </section>
+
+  <section aria-labelledby="catH">
+    <h2 id="catH">주제별</h2>
+    <div class="cats" id="cats"></div>
+  </section>
+
+  <section aria-labelledby="chH">
+    <h2 id="chH">저장 빈도</h2>
+    <div class="seg" role="group" aria-label="집계 단위">
+      <button class="btn sm" id="mM" type="button" aria-pressed="true">월별</button>
+      <button class="btn sm" id="mD" type="button" aria-pressed="false">일별(최근 180일)</button>
+    </div>
+    <div class="bars" id="chart" aria-label="저장 빈도 막대 그래프"></div>
+    <div class="rng"><span id="r0"></span><span id="r1"></span></div>
+    <p id="chartInfo"></p>
+  </section>
+
+  <section aria-labelledby="lsH">
+    <h2 id="lsH">목록</h2>
+    <div class="bar2">
+      <input id="q" type="search" placeholder="캡션이나 계정명 검색" aria-label="검색">
+      <span id="chip" class="chip" hidden></span>
+    </div>
+    <div class="list" id="list"></div>
+    <div class="row" style="margin-top:12px"><button class="btn" id="more" type="button" hidden>더 보기</button></div>
+  </section>
+
+  <section aria-labelledby="exH">
+    <h2 id="exH">노션으로 옮기기</h2>
+    <div class="row"><button class="btn" id="csv" type="button">CSV 내보내기</button></div>
+    <p class="hint" style="margin-top:8px">노션에서 새 페이지 → 가져오기 → CSV로 데이터베이스가 만들어집니다. 폰 앱에서는 CSV 가져오기가 안 될 수 있어서 PC 웹에서 하는 편이 안전합니다.</p>
+  </section>
+
+  <details id="ruleBox">
+    <summary>분류 규칙 고치기</summary>
+    <p class="hint" style="margin:6px 0">한 줄에 하나씩 쓰는 형식은 주제: 키워드,키워드 입니다. 캡션과 계정명에 키워드가 들어 있으면 그 주제로 갑니다. 위쪽 줄이 먼저 적용됩니다. 바꾸면 바로 반영되고 이 기기에 저장됩니다.</p>
+    <textarea id="rules" spellcheck="false" aria-label="분류 규칙"></textarea>
+    <div class="row" style="margin-top:8px"><button class="btn sm" id="rulesReset" type="button">기본 규칙으로 되돌리기</button></div>
+  </details>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script>
+(()=>{
+const $=s=>document.querySelector(s);
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const DEFAULT_RULES=`수영: 수영,접영,평영,자유형,배영,스컬링,물잡기,swim,swimming,butterfly,breaststroke,freestyle,synchronisedswimming,泳法,nefes
+운동: 운동,헬스,필라테스,요가,클라이밍,등산,러닝,달리기,스트레칭,골반,자세교정,코어,gym,fitness,workout,yoga,pilates,running,crossfit,golf,골프,mobility,stretching,treino,entreno,miniband,minibands,bands,chest,shoulders,reps,calisthenics,bodybuilding,physique,폼롤러,근육,전거근,엉덩이,밴드,어질리티,breakdance,dance,tutorial,тренировка,💪,🏃
+스포츠: 야구,kbo,ssg,랜더스,baseball,pitcher,축구,손흥민,투수,선발,농구
+음악: 음악,노래,가수,보컬,피아노,기타,공연,콘서트,music,song,singer,vocal,piano,guitar,concert,band,jazz,kpop,멜로디,lyrics,가사,플리,플레이리스트,playlist,추천곡,명곡,발라드,앨범,발매,셋리스트,재즈,페스티벌,히게단,혁오,잔나비,너드커넥션,카더가든,호피폴라,쌈디,사이먼도미닉,duet,cover,listen,lullaby,mkgee,박지윤,피처링,라이브,ライブ,曲,팟캐스트,스무스톡
+사업/마케팅: 사업,창업,마케팅,매출,인사이트,브랜드,사업가,고객,수익,시장,마인드,성공,부자,브랜딩,business,marketing,startup,founder,홍보,스타트업,이커머스,shopify,구독자,유튜버,삼성전자,가게,차리,창업가
+IT/개발: 코딩,개발자,개발,배포,웹사이트,프로그래밍,알고리즘,노션,자동화,ai,gpt,chatgpt,llm,coding,developer,programming,python,javascript,react,github,algorithm,algorithms,notion,automation,ppt,피피티,powerpoint,motiongraphics,rainmeter,macos,타임라인,구글,앱스토어,스킨
+커리어/성장: 이력서,포트폴리오,취업,신입,주니어,면접,커리어,직장인,퇴사,습관,공부법,자기계발,영어,동기부여,career,productivity,english,motivation,사직서,이직,팀원,업무,글쓰기,routine,keepgoing,멘땅,연봉,직장,전문가
+재테크: 재테크,투자,경제,주식,부동산,소득공제,연말정산,청약,적금,절약,월세,invest,stock,finance,money,전세,보증금,임차인,집주인,변호사,세입자,법률,계약,등기
+요리: 요리,레시피,만드는 법,만드는법,만들어봤,재료,2인분,1인분,소금,설탕,간장,에어프라이어,에프,구워,삶,볶,수육,덮밥,파스타,베이킹,recipe,cook,cooking,chef,baking,집밥,홈쿡,kfood,koreanfood,샐러드,새우까는법,대하구이,簡単,作ろ,食パン,연어,구성은
+맛집: 맛집,식당,레스토랑,메뉴,📍,국밥,술집,노포,일식집,고깃집,돈까스,초밥,오마카세,브런치,restaurant,food,gourmet,sushi,ramen,pizza,burger,wine,beer,맥주,와인,막걸리,주소,영업시간,치킨,만두,칵테일,소주,김치찌개,분식,갈비,폴라포,맛있
+카페: 카페,커피,디저트,베이커리,케이크,식빵,빵집,cafe,coffee,dessert,bakery,latte,아이스크림,자몽,망고,요거트,보바,밀크폼,스무디,커스텀,フルーツ
+살림/꿀팁: 꿀팁,살림,자취,정리,수납,청소,하수구,싱크대,음쓰,음식물,다이소,생활용품,원룸,신혼집,diy,hack
+여행: 여행,호텔,관광,항공,캠핑,제주,오사카,도쿄,일본,유럽,스파,찜질방,사우나,travel,trip,tour,hotel,camp,japan,europe,italy,부산,대전,fukuoka,busan,gwangalli,광안리,후쿠오카,바르셀로나,barcelona
+서울/나들이: 한강,성수,연희동,서울시,서울,망원동,건대,안국,꽃집,벚꽃,산책,관악산,연주대,나들이,스팟,공원,무료 프로그램,문구,편집샵,칵테일바
+패션: 패션,코디,옷장,스타일링,바지,핏,무인양품,유니클로,fashion,ootd,outfit,style,sneaker,vintage,lookbook,착용정보,shirt,pants,bandana,bandanas,반다나,accessory,목걸이,카고,팬츠,button-up
+쇼핑/소비: 할인,세일,sale,이벤트,예약판매,완판,구매,가격,마트,이마트,장보기,쿠폰,공구,득템,언박싱,unboxing,off
+뷰티: 뷰티,메이크업,화장품,피부관리,스킨케어,헤어스타일,네일,향수,beauty,makeup,skincare,cosmetic,perfume
+인테리어: 인테리어,가구,집꾸미기,홈데코,플랜테리어,욕실,interior,furniture,decor,ikea
+책: 책추천,책읽,독서,서점,작가,에세이,문학,소설,좋은글,book,reading,essay,novel
+영감/크리에이터: ourexpresso,번역 및 자막,인터뷰,창작,창작자,관객,아티스트,예술,예술가,작업공간,취향 수집,journaling,그랜드마스터클래스,신해철,양동근,빈지노,mtv,noisey,david bowie,데이비드 보위
+영화/드라마: 영화,드라마,넷플릭스,애니,tvn,kbs,sbs,jtbc,tving,예능,movie,film,cinema,drama,netflix,anime,감독,배우,연기,연기자,박정민,박보영,유퀴즈,무한도전,바람난 가족,홍상수,키에슬로프스키,마이크 밀스,컴온 컴온,박근영,쿵푸팬더
+아트/디자인: 디자인,일러스트,그림,전시,공예,종이접기,design,illust,illustration,drawing,painting,gallery,exhibition,craft,watercolor,acrylic,canvas,artreels,papercrafts,papercraft,diycrafts,도안,인스타툰,웹툰,카드,그릇,streetphotography
+사진: 사진,카메라,필름카메라,디카,photo,photography,camera
+반려동물: 강아지,고양이,반려,댕댕,냥이,dog,cat,pet,puppy,kitten,sheltie,셀티,셔틀랜드,리트리버,retriever,골든리트리버
+건강/웰빙: 건강,명상,수면,다이어트,영양,멘탈,병원,wellness,meditation,sleep,diet,nutrition,mental,통증,허리,턱,관절,소화,소화제,약사,생리,지압,항바이러스,뻐근,앉아있,리햅,정형외과,재활,asmr
+커플/가족: 커플,남친,여친,남편,아내,신혼,부부,럽스타그램,육아,아기,결혼,couple,baby,kids,parenting,family,wedding,엄마,아빠,아들,양육,웨딩,청혼,여보,오빠,이상형,로마가족,유튜브_로마가족
+유머/밈: 밈,개그,짤,웃긴,실화,유머,mbti,ㅋㅋㅋ,meme,funny,humor,comedy,재롱,사투리,루팡,경상도,충청도,과장하노,문화차이,좀비
+게임: 게임,game,gaming,nintendo,steam,playstation,스팀,슬더슬
+심리/마음: 심리,불안,감정,치유,힐링,healing,위로,지쳐,자신감,자존감,예민,상처,후회,스스로,화를,멘탈,트라우마,실망,짜증,숨이 찬,지친
+글귀/명언: 명언,글귀,문장,위로,행복,인생,조언,철학,쇼펜하우어,니체,quote,낭만,다정,명대사,귀인,존재,진심,용기,나다워,믿음,괜찮아,토닥,찬란,한 발자국,좋아하는 일,생각을 달리,이유 없이,최고의 조합,시간,꽃은 피고,positivity,strong,just do it,30일
+연애/관계: 연애,이별,관계,안정형,회피형,relationship,love,데이트,사랑,좋아하는 사람,싸울일,소통법,첫사랑,보고싶,든든한 사람,웃게 만드는 사람,함께 나이,나를 좋아해`;
+const store=new Map();let items=[],filter=null,q='',shown=100,mode='m',isSample=true,RULES=[];
+let ov={};try{ov=JSON.parse(localStorage.getItem('ov')||'{}')}catch(e){}
+let rulesText=DEFAULT_RULES;try{rulesText=localStorage.getItem('rules_v1')||DEFAULT_RULES}catch(e){}
+const pad=n=>String(n).padStart(2,'0');
+const dstr=ts=>{const d=new Date(ts*1000);return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())};
+
+/* ---------- 읽기 ---------- */
+// 인스타 JSON은 한글이 latin1로 깨져 있어서 복원한다
+const fixEnc=s=>{try{return decodeURIComponent(escape(s))}catch(e){return s}};
+function walk(o,title,out){
+  if(!o||typeof o!=='object')return;
+  if(Array.isArray(o.label_values)&&o.timestamp!=null){ // 2025년 이후 형식
+    const lv={};o.label_values.forEach(l=>{if(l.href)lv.href=l.href;lv[fixEnc(l.label||'')]=fixEnc(l.value||'')});
+    if(lv.href)out.push({href:lv.href,ts:o.timestamp,title:lv['제목']||lv['Title']||'',text:lv['캡션']||lv['Caption']||''});
+    return}
+  if(o.href&&o.timestamp!=null){out.push({href:o.href,ts:o.timestamp,title:fixEnc(title||''),text:''});return} // 구형식
+  const t=o.title||o.value||title;
+  for(const k in o)walk(o[k],typeof o[k]==='object'?t:title,out);
+}
+const parseJSON=t=>{const out=[];walk(JSON.parse(t),'',out);return out};
+function guessTs(text){
+  const m=text.match(/(\d{4})\D{1,3}(\d{1,2})\D{1,3}(\d{1,2})/);
+  return m?Date.UTC(+m[1],+m[2]-1,+m[3])/1000:0;
+}
+function parseHTML(txt){ // 미검증: 실제 HTML 내보내기 구조를 확인하지 못했다
+  const d=new DOMParser().parseFromString(txt,'text/html'),out=[],seen=new Set();
+  d.querySelectorAll('a[href*="instagram.com/p/"],a[href*="instagram.com/reel/"],a[href*="instagram.com/tv/"]').forEach(a=>{
+    const href=a.href.split('?')[0];if(seen.has(href))return;seen.add(href);
+    let box=a.parentElement;
+    for(let i=0;i<3&&box&&box.textContent.trim().length<=a.textContent.trim().length+2;i++)box=box.parentElement;
+    const text=(box?box.textContent:'').replace(/\s+/g,' ').trim();
+    const h=box&&box.querySelector('h2,h3');
+    out.push({href,ts:guessTs(text),title:h?h.textContent.trim():'',text:text.split(href).join('').slice(0,400)});
+  });
+  return out;
+}
+async function fromZip(f){
+  if(!window.JSZip)throw new Error('ZIP 라이브러리를 불러오지 못했습니다. 인터넷 연결을 확인하거나 ZIP 안의 saved_posts.json을 직접 고르세요.');
+  const z=await JSZip.loadAsync(f),list=[],notes=[];let noData=false,found=0;
+  for(const [p,e] of Object.entries(z.files)){
+    if(e.dir)continue;
+    const lp=p.split('\\').join('/').toLowerCase(),inSaved=lp.startsWith('saved/')||lp.includes('/saved/');
+    if(inSaved&&lp.endsWith('no-data.txt'))noData=true;
+    if(!inSaved||!(lp.endsWith('.json')||lp.endsWith('.html')))continue;
+    found++;const t=await e.async('string');
+    try{list.push(...(lp.endsWith('.json')?parseJSON(t):parseHTML(t)))}catch(err){notes.push(p+' 을(를) 읽지 못했습니다.')}
+  }
+  if(!found)notes.push(noData?'이 내보내기에는 저장됨 데이터가 없습니다. 저장한 계정과 같은 계정인지, 기간이 전체 기간인지, 저장됨을 선택했는지 확인하세요.':'ZIP 안에서 저장됨 파일을 찾지 못했습니다.');
+  return {list,notes};
+}
+async function readFile(f){
+  const n=f.name.toLowerCase();
+  if(n.endsWith('.zip'))return fromZip(f);
+  const t=await f.text();
+  if(n.endsWith('.json'))return {list:parseJSON(t),notes:[]};
+  if(n.endsWith('.html')||n.endsWith('.htm'))return {list:parseHTML(t),notes:[]};
+  return {list:[],notes:[f.name+' 은(는) 지원하지 않는 형식입니다.']};
+}
+
+/* ---------- 합치기 ---------- */
+const weak=t=>!t||t.startsWith('Photo by')||t.startsWith('Video by')||t.startsWith('May be')||t.startsWith('tagging');
+function norm(x){
+  x.title=x.title||'';x.text=(x.text||'').replace(/\s+/g,' ').trim();
+  // 긁어온 파일의 설명 문구 "Photo by 계정 on October 1, 2026." 에서 계정과 게시일을 뽑는다
+  const m=x.text.match(/^(?:Photo|Video|Reel)?\s*(?:by|shared by)\s+(.+?)\s+on\s+([A-Z][a-z]+ \d{1,2}, \d{4})/);
+  if(m){x.title=x.title||m[1];const t=Date.parse(m[2]);if(t)x.ts=t/1000;x.text=x.text.slice(m[0].length).replace(/^[.\s]+/,'')}
+  return x;
+}
+function add(list){
+  for(const x0 of list){
+    const x=norm(x0),k=x.href.split('?')[0].replace(/\/$/,''),o=store.get(k);
+    if(!o){x.href=k+'/';store.set(k,x);continue}
+    if(!o.ts&&x.ts)o.ts=x.ts;
+    if(!o.title&&x.title)o.title=x.title;
+    if(!weak(x.text)&&x.text.length>o.text.length)o.text=x.text;
+  }
+}
+function rebuild(){
+  items=[...store.values()];
+  if(items.length&&items.every(x=>x.ts))items.sort((a,b)=>b.ts-a.ts);
+  items.forEach(x=>{x.date=x.ts?dstr(x.ts):''});
+}
+
+/* ---------- 분류 ---------- */
+function parseRules(){return rulesText.split('\n').map(l=>{const i=l.indexOf(':');return i<0?null:[l.slice(0,i).trim(),l.slice(i+1).split(',').map(s=>s.trim().toLowerCase()).filter(Boolean)]}).filter(r=>r&&r[0]&&r[1].length)}
+const reCache=new Map();
+function hit(s,k){
+  if(/^[a-z0-9_]+$/.test(k)){let r=reCache.get(k);if(!r){r=new RegExp('(^|[^a-z0-9])'+k+'([^a-z0-9]|$)');reCache.set(k,r)}return r.test(s)}
+  return s.includes(k);
+}
+function cat(x){
+  if(ov[x.href])return ov[x.href];
+  const s=(x.title+' '+x.text).toLowerCase();
+  for(const [c,ks] of RULES)if(ks.some(k=>hit(s,k)))return c;
+  return '미분류';
+}
+
+/* ---------- 그리기 ---------- */
+function visible(){return items.filter(x=>(!filter||x.cat===filter)&&(!q||(x.text+' '+x.title).toLowerCase().includes(q)))}
+function render(){
+  RULES=parseRules();items.forEach(x=>{x.cat=cat(x)});
+  $('#banner').hidden=!isSample;
+  const names=RULES.map(r=>r[0]).concat('미분류'),cnt={};items.forEach(x=>cnt[x.cat]=(cnt[x.cat]||0)+1);
+  const ranked=names.filter(c=>cnt[c]).sort((a,b)=>(a==='미분류')-(b==='미분류')||cnt[b]-cnt[a]);
+  const total=items.length,dated=items.filter(x=>x.date).map(x=>x.date).sort();
+  const top=ranked.filter(c=>c!=='미분류').slice(0,3);
+  $('#sum').innerHTML=`<div class="big">${total.toLocaleString()}<span>개 저장</span></div>`
+    +(dated.length?`<p class="hint">${dated[0]} ~ ${dated.at(-1)}${dated.length<total?`, 날짜를 아는 항목 ${dated.length.toLocaleString()}개`:''}</p>`:'<p class="hint">저장 날짜 정보가 없는 파일입니다.</p>')
+    +(top.length?`<p>가장 많이 저장한 주제는 <b>${esc(top[0])}</b> ${cnt[top[0]].toLocaleString()}개(${Math.round(cnt[top[0]]/total*100)}%)${top.length>1?'이고, 이어서 '+top.slice(1).map(c=>'<b>'+esc(c)+'</b>').join(', ')+' 순입니다.':'입니다.'}</p>`:'');
+  const mx=Math.max(1,...ranked.map(c=>cnt[c]));
+  $('#cats').innerHTML=ranked.map(c=>`<button class="cat" type="button" data-c="${esc(c)}" aria-pressed="${filter===c}"><span class="nm">${esc(c)}</span><span class="b"><i style="width:${cnt[c]/mx*100}%"></i></span><span class="n">${cnt[c].toLocaleString()}</span></button>`).join('');
+  chart();list();
+}
+let bars=[];
+function chart(){
+  const src=visible().filter(x=>x.date);
+  const by={};src.forEach(x=>{const k=mode==='m'?x.date.slice(0,7):x.date;by[k]=(by[k]||0)+1});
+  const keys=Object.keys(by).sort();bars=[];
+  $('#mM').setAttribute('aria-pressed',mode==='m');$('#mD').setAttribute('aria-pressed',mode==='d');
+  if(!keys.length){$('#chart').innerHTML='';$('#r0').textContent='';$('#r1').textContent='';$('#chartInfo').textContent='날짜를 아는 항목이 없어서 그래프를 그릴 수 없습니다.';return}
+  if(mode==='m'){
+    let y=+keys[0].slice(0,4),m=+keys[0].slice(5);const ey=+keys.at(-1).slice(0,4),em=+keys.at(-1).slice(5);
+    while(y<ey||(y===ey&&m<=em)){const k=y+'-'+pad(m);bars.push([k,by[k]||0]);if(++m>12){m=1;y++}}
+  }else{
+    const end=new Date(keys.at(-1)+'T00:00:00');
+    for(let i=179;i>=0;i--){const d=new Date(end);d.setDate(d.getDate()-i);const k=dstr(d.getTime()/1000);bars.push([k,by[k]||0])}
+  }
+  const mx=Math.max(1,...bars.map(b=>b[1]));
+  $('#chart').innerHTML=bars.map((b,i)=>`<i data-i="${i}" style="height:${Math.max(b[1]?4:0,b[1]/mx*100)}%"></i>`).join('');
+  $('#r0').textContent=bars[0][0];$('#r1').textContent=bars.at(-1)[0];
+  const nd=visible().length-src.length;
+  $('#chartInfo').textContent='막대를 눌러 보세요.'+(nd?` 날짜를 모르는 ${nd.toLocaleString()}개는 제외했습니다.`:'');
+}
+function list(){
+  const v=visible(),names=RULES.map(r=>r[0]).concat('미분류');
+  $('#chip').hidden=!filter;if(filter)$('#chip').innerHTML=`${esc(filter)}<button type="button" id="clr" aria-label="필터 해제">✕</button>`;
+  $('#list').innerHTML=v.slice(0,shown).map(x=>`<article class="item"><div class="meta"><span>${x.date||'날짜 모름'}</span>${x.title?`<span>@${esc(x.title)}</span>`:''}</div>`
+    +`<p class="cap">${esc(x.text)||'<span class="hint">캡션 없음</span>'}</p>`
+    +`<div class="act"><select data-h="${esc(x.href)}" aria-label="주제">${names.map(c=>`<option${c===x.cat?' selected':''}>${esc(c)}</option>`).join('')}</select>${isSample?'<span class="hint">예시</span>':`<a class="go" href="${esc(x.href)}" target="_blank" rel="noopener">인스타에서 열기</a>`}</div></article>`).join('')
+    +(v.length?'':'<p class="hint">조건에 맞는 항목이 없습니다.</p>');
+  $('#more').hidden=v.length<=shown;$('#more').textContent=`더 보기 (${Math.min(100,v.length-shown)}개)`;
+}
+
+/* ---------- 불러오기 ---------- */
+const SAMPLE=[[3,'trip.daily','제주 3박 4일 코스 정리 항공권 호텔 후기'],[5,'recipe_home','10분 만에 만드는 간장 계란밥 레시피'],[6,'dev.notes','개발자 취업 포트폴리오 이력서 피드백'],[9,'swim.coach','접영 킥 타이밍 수영 드릴'],[12,'cafe.seoul','성수 카페 디저트 케이크 신메뉴'],[15,'quote.daily','행복은 강도가 아니라 빈도다 인생 명언'],[18,'ai.workflow','chatgpt 자동화 노션 생산성 팁'],[21,'home.deco','작은 방 인테리어 수납 가구 배치'],[25,'fit.home','홈트 스트레칭 15분 루틴 헬스'],[30,'book.night','이번 달 읽은 책 추천 에세이 독서'],[34,'mini.finance','연말정산 소득공제 월세 정리 재테크'],[38,'indie.playlist','퇴근길 플레이리스트 발라드 명곡'],[41,'seoul.walk','한강 벚꽃 산책 스팟 서울 나들이'],[47,'couple.log','커플 데이트 코스 연애 소통법'],[52,'pet.diary','강아지 산책 고양이 간식 반려'],[58,'fashion.fit','봄 코디 바지 핏 스타일링 ootd'],[63,'biz.insight','사업 마케팅 매출 인사이트 브랜딩'],[70,'kitchen.log','집밥 덮밥 파스타 에어프라이어 요리'],[78,'food.map','노포 맛집 칼국수 국밥 영업시간'],[85,'trip.japan','오사카 일본 여행 항공 호텔'],[92,'swim.coach','수영 평영 자유형 호흡 교정'],[101,'movie.talk','넷플릭스 드라마 영화 추천 정리'],[118,'art.studio','수채화 일러스트 그림 전시 디자인'],[130,'dev.notes','python 코딩 개발 자동화 github'],[150,'quote.daily','위로가 필요한 날 읽는 글귀'],[175,'fit.home','러닝 근육 운동 필라테스'],[210,'skin.log','피부 스킨케어 메이크업 뷰티'],[250,'home.deco','플랜테리어 식물 인테리어'],[290,'trip.daily','캠핑 여행 호텔 관광'],[330,'recipe_home','베이킹 빵 디저트 케이크']];
+function loadSample(){
+  store.clear();const base=Date.UTC(2026,9,1)/1000;
+  add(SAMPLE.map(([d,u,t],i)=>({href:'https://www.instagram.com/p/EXAMPLE'+i+'/',ts:base-d*86400,title:u,text:t})));
+  isSample=true;rebuild();
+}
+async function load(files){
+  const msg=$('#msg');msg.textContent='읽는 중입니다...';
+  try{
+    const prev=new Map(store);store.clear(); // 한 번에 고른 파일들만 합치고, 다시 고르면 교체한다
+    let got=0;const notes=[];
+    for(const f of files){const r=await readFile(f);got+=r.list.length;notes.push(...r.notes);add(r.list)}
+    if(!got){store.clear();for(const [k,v] of prev)store.set(k,v);render();msg.textContent=(notes.join(' ')||'저장된 게시물을 찾지 못했습니다.');return}
+    isSample=false;filter=null;shown=100;rebuild();render();
+    msg.textContent=`${store.size.toLocaleString()}개를 불러왔습니다. ${notes.join(' ')}`;
+  }catch(e){msg.textContent='읽지 못했습니다. '+(e&&e.message||e)}
+}
+
+/* ---------- 내보내기 ---------- */
+async function saveFile(filename,data,type){
+  try{
+    const dl=window.claude&&window.claude.use?await window.claude.use('downloads'):null;
+    if(dl){await dl.save({filename,data});return}
+  }catch(e){if(e&&e.code==='declined')return}
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([data],{type}));a.download=filename;a.click();
+}
+function exportCSV(){
+  const qt=s=>'"'+String(s).replace(/"/g,'""')+'"';
+  const rows=items.map(x=>[x.date,x.title,x.cat,x.text.slice(0,300),isSample?'':x.href].map(qt).join(','));
+  saveFile('saved_posts_taste.csv','﻿날짜,계정,주제,캡션,링크\n'+rows.join('\n'),'text/csv');
+}
+
+/* ---------- 이벤트 ---------- */
+$('#pick').onclick=()=>$('#file').click();
+$('#file').onchange=e=>{const fs=[...e.target.files];e.target.value='';if(fs.length)load(fs)};
+const drop=$('#drop');
+drop.ondragover=e=>{e.preventDefault();drop.classList.add('over')};
+drop.ondragleave=()=>drop.classList.remove('over');
+drop.ondrop=e=>{e.preventDefault();drop.classList.remove('over');if(e.dataTransfer.files.length)load([...e.dataTransfer.files])};
+$('#cats').onclick=e=>{const b=e.target.closest('.cat');if(!b)return;filter=filter===b.dataset.c?null:b.dataset.c;shown=100;render()};
+$('#chip').onclick=e=>{if(e.target.closest('#clr')){filter=null;shown=100;render()}};
+$('#q').oninput=e=>{q=e.target.value.trim().toLowerCase();shown=100;render()};
+$('#mM').onclick=()=>{mode='m';chart()};$('#mD').onclick=()=>{mode='d';chart()};
+$('#chart').onclick=e=>{
+  if(!bars.length)return;const r=e.currentTarget.getBoundingClientRect();
+  const i=Math.min(bars.length-1,Math.max(0,Math.floor((e.clientX-r.left)/r.width*bars.length)));
+  e.currentTarget.querySelectorAll('i').forEach((el,j)=>el.classList.toggle('on',j===i));
+  $('#chartInfo').textContent=`${bars[i][0]}: ${bars[i][1]}개`;
+};
+$('#more').onclick=()=>{shown+=100;list()};
+$('#list').onclick=e=>{const c=e.target.closest('.cap');if(c)c.classList.toggle('open')};
+$('#list').onchange=e=>{
+  if(e.target.tagName!=='SELECT')return;
+  ov[e.target.dataset.h]=e.target.value;try{localStorage.setItem('ov',JSON.stringify(ov))}catch(err){}
+  render();
+};
+$('#csv').onclick=exportCSV;
+const ta=$('#rules');ta.value=rulesText;let t=0;
+ta.oninput=()=>{clearTimeout(t);t=setTimeout(()=>{rulesText=ta.value;try{localStorage.setItem('rules_v1',rulesText)}catch(e){}render()},300)};
+$('#rulesReset').onclick=()=>{rulesText=DEFAULT_RULES;ta.value=rulesText;try{localStorage.removeItem('rules_v1')}catch(e){}render()};
+
+loadSample();render();
+})();
+</script>
+</body></html>

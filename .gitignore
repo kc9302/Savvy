@@ -1,0 +1,11 @@
+# 개인 데이터: 절대 커밋하지 않는다
+saved_posts*.json
+saved_collections*.json
+crawl_cache.json
+*.zip
+instagram-*/
+
+# 작업 파일
+.tmp-test/
+.playwright-mcp/
+node_modules/
