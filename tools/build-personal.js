@@ -31,7 +31,7 @@ const items = data.map(x => {
 
 let html = fs.readFileSync(path.join(__dirname, "..", "index.html"), "utf8");
 const json = JSON.stringify(items).replace(/</g, "\\u003c"); // </script> 방지
-const marker = '<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip';
+const marker = '<script>/* JSZip v3.10.1 (MIT) 내장';
 if (!html.includes(marker)) throw new Error("index.html 구조가 바뀌었습니다");
 html = html.replace(marker, () => '<script type="application/json" id="preload">' + json + "</script>\n" + marker);
 html = html.replace("파일은 이 기기의 브라우저 안에서만 읽습니다. 어디로도 전송하지 않습니다.", "이 페이지에는 내 저장 목록이 들어 있습니다. 개인용이니 공개하지 마세요.");
