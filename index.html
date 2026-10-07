@@ -402,20 +402,21 @@ function classify(x){
 }
 
 /* ---------- 찾기 탭 ---------- */
-function visible(){return items.filter(x=>(!filter||x.cat===filter)&&(!sub||(sub===NONE?!x.tags.length:x.tags.includes(sub)))&&(!q||(x.text+' '+x.title).toLowerCase().includes(q)))}
+const qHit=x=>!q||(x.text+' '+x.title).toLowerCase().includes(q);
+function visible(){return items.filter(x=>(!filter||x.cat===filter)&&(!sub||(sub===NONE?!x.tags.length:x.tags.includes(sub)))&&qHit(x))}
 function renderFind(){
-  const cnt={};items.forEach(x=>cnt[x.cat]=(cnt[x.cat]||0)+1);
-  const names=RULES.map(r=>r[0]).concat('미분류').filter(c=>cnt[c]).sort((a,b)=>(a==='미분류')-(b==='미분류')||cnt[b]-cnt[a]);
-  $('#topChips').innerHTML=`<button class="chip" type="button" data-c="" aria-pressed="${!filter}">전체 <b>${items.length.toLocaleString()}</b></button>`
-    +names.map(c=>`<button class="chip" type="button" data-c="${esc(c)}" aria-pressed="${filter===c}">${esc(c)} <b>${cnt[c].toLocaleString()}</b></button>`).join('');
+  const cnt={},found=items.filter(qHit);found.forEach(x=>cnt[x.cat]=(cnt[x.cat]||0)+1);
+  const names=RULES.map(r=>r[0]).concat('미분류').filter(c=>cnt[c]||c===filter).sort((a,b)=>(a==='미분류')-(b==='미분류')||(cnt[b]||0)-(cnt[a]||0));
+  $('#topChips').innerHTML=`<button class="chip" type="button" data-c="" aria-pressed="${!filter}">전체 <b>${found.length.toLocaleString()}</b></button>`
+    +names.map(c=>`<button class="chip" type="button" data-c="${esc(c)}" aria-pressed="${filter===c}">${esc(c)} <b>${(cnt[c]||0).toLocaleString()}</b></button>`).join('');
   const subs=filter?(SUBS[filter]||[]):[];
   $('#subChips').hidden=!subs.length;
   if(subs.length){
-    const inCat=items.filter(x=>x.cat===filter),sc={};let none=0;
+    const inCat=found.filter(x=>x.cat===filter),sc={};let none=0;
     inCat.forEach(x=>{if(!x.tags.length)none++;x.tags.forEach(t=>sc[t]=(sc[t]||0)+1)});
-    const order=subs.map(r=>r[0]).filter(t=>sc[t]).sort((a,b)=>sc[b]-sc[a]);
-    $('#subChips').innerHTML=order.map(t=>`<button class="chip sub" type="button" data-s="${esc(t)}" aria-pressed="${sub===t}">${esc(t)} <b>${sc[t]}</b></button>`).join('')
-      +(none?`<button class="chip sub" type="button" data-s="${NONE}" aria-pressed="${sub===NONE}">${NONE} <b>${none}</b></button>`:'');
+    const order=subs.map(r=>r[0]).filter(t=>sc[t]||t===sub).sort((a,b)=>(sc[b]||0)-(sc[a]||0));
+    $('#subChips').innerHTML=order.map(t=>`<button class="chip sub" type="button" data-s="${esc(t)}" aria-pressed="${sub===t}">${esc(t)} <b>${sc[t]||0}</b></button>`).join('')
+      +(none||sub===NONE?`<button class="chip sub" type="button" data-s="${NONE}" aria-pressed="${sub===NONE}">${NONE} <b>${none}</b></button>`:'');
   }
   list();
 }
@@ -528,7 +529,7 @@ drop.ondrop=e=>{e.preventDefault();drop.classList.remove('over');if(e.dataTransf
 $('#topChips').onclick=e=>{const b=e.target.closest('.chip');if(!b)return;const c=b.dataset.c||null;filter=c===filter?null:c;sub=null;shown=60;renderFind()};
 $('#subChips').onclick=e=>{const b=e.target.closest('.chip');if(!b)return;sub=sub===b.dataset.s?null:b.dataset.s;shown=60;renderFind()};
 $('#cats').onclick=e=>{const b=e.target.closest('.cat');if(!b)return;filter=b.dataset.c;sub=null;shown=60;renderFind();showTab('find');window.scrollTo({top:0})};
-$('#q').oninput=e=>{q=e.target.value.trim().toLowerCase();shown=60;list();$('#lead').scrollIntoView({block:'nearest'})};
+$('#q').oninput=e=>{q=e.target.value.trim().toLowerCase();shown=60;renderFind();$('#lead').scrollIntoView({block:'nearest'})};
 $('#mM').onclick=()=>{mode='m';chart()};$('#mD').onclick=()=>{mode='d';chart()};
 $('#chart').onclick=e=>{if(!bars.length)return;const r=e.currentTarget.getBoundingClientRect();const i=Math.min(bars.length-1,Math.max(0,Math.floor((e.clientX-r.left)/r.width*bars.length)));e.currentTarget.querySelectorAll('i').forEach((el,j)=>el.classList.toggle('on',j===i));$('#chartInfo').textContent=`${bars[i][0]}: ${bars[i][1]}개`};
 $('#more').onclick=()=>{shown+=60;list()};
