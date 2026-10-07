@@ -13,4 +13,5 @@ node_modules/
 
 # 생성물
 graphify-out/cache/
+graphify-out/.graphify_*
 vendor/
