@@ -10,3 +10,7 @@ instagram-*/
 .tmp-test/
 .playwright-mcp/
 node_modules/
+
+# 생성물
+graphify-out/cache/
+vendor/
