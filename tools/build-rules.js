@@ -52,6 +52,39 @@ const SUB = `
 심리/마음 > 자존감·불안: 자존감,자신감,불안,예민,멘탈
 `.trim().split("\n");
 
+// 여러 주제의 글에 흔히 나오는 일반적인 단어. 앞에 ~를 붙이면 반만 센다(0.5점). 주제는 1점 이상이어야 정해지므로 혼자서는 주제를 못 정하고, 다른 단어와 함께 있거나 두 개가 겹쳐야 정한다.
+const WEAK = {
+  "사업/마케팅": "인사이트,브랜드,마인드,성공,부자,고객,수익,시장,구독자,유튜버,가게,차리,홍보",
+  "IT/개발": "알고리즘,구글,타임라인,스킨,앱스토어",
+  "커리어/성장": "직장인,습관,영어,english,업무,직장,글쓰기,전문가,프리랜서,팀원,productivity",
+  "재테크": "경제,거래,계약,변호사,법률,로또,money,finance",
+  "운동": "밴드,bands,dance,tutorial,chest,shoulders,엉덩이,근육,골반",
+  "음악": "공연,band,cover,listen,duet,가사,라이",
+  "요리": "소금,설탕,간장,소스,식감,구워,삶,볶,재료,연어",
+  "맛집": "주소,메뉴,food,wine,beer,맥주,와인,막걸리,소주,만두,치킨",
+  "카페": "디저트,케이크,식빵,아이스크림,자몽,망고,요거트,스무디,커스텀",
+  "살림/꿀팁": "꿀팁,정리,포장,리본,hack",
+  "여행": "일본,japan,europe,유럽,부산,대전,스파",
+  "서울/나들이": "서울,성수,공원,문구,종로,스팟,꽃집,산책",
+  "패션": "핏,바지,style,팬츠,목걸이,카고,shirt,pants",
+  "쇼핑/소비": "가격,마트,이벤트,off,구매",
+  "책": "작가",
+  "영화/드라마": "kbs,sbs,jtbc,tvn,연기,감독,배우",
+  "아트/디자인": "그림,카드,그릇",
+  "사진": "사진,언스플래쉬,landscape,snap",
+  "반려동물": "dog,cat,pet",
+  "건강/웰빙": "건강,병원,허리,턱,영양,소화,멘탈,다이어트",
+  "커플/가족": "아내,여보,오빠,엄마,아빠,아들,family,baby,kids,결혼",
+  "유머/밈": "ㅋㅋㅋ,실화,짤,mbti",
+  "심리/마음": "감정,스스로,기분,응원,편한,단단,상처,후회,화를,실망,짜증,위로,힘들,지친",
+  "글귀/명언": "인생,행복,시간,당신,질문,존재,진심,믿음,용기,낭만,다정,공감,편지,말씀,법칙,서른,살아가,위로",
+  "연애/관계": "관계,사랑,love,데이트",
+};
+const weak = Object.fromEntries(Object.entries(WEAK).map(([t, s]) => [t, new Set(s.split(","))]));
+const unknown = Object.keys(WEAK).filter(t => !top.some(l => name(l) === t));
+if (unknown.length) throw new Error("WEAK 의 주제가 규칙에 없습니다: " + unknown.join(","));
+top = top.map(l => { const t = name(l), i = l.indexOf(":"); const w = weak[t]; if (!w) return l; return l.slice(0, i + 1) + " " + l.slice(i + 1).split(",").map(s => s.trim()).map(k => w.has(k) ? "~" + k : k).join(","); });
+
 const rules = top.concat(SUB).join("\n");
 if (/[`$]/.test(rules)) throw new Error("규칙에 백틱이나 $가 있으면 안 됩니다");
 const p = path.join(root, "index.html");
