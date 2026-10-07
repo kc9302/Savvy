@@ -13,7 +13,7 @@
       "file_type": "code",
       "norm_label": "clip()",
       "source_file": "tools/build-personal.js",
-      "source_location": "L14"
+      "source_location": "L17"
     },
     {
       "id": "tools_build_personal_get",
@@ -28,100 +28,16 @@
       "source_location": "L7"
     },
     {
-      "id": "crawl_ent",
-      "label": "ent()",
+      "id": "tools_build_rules_name",
+      "label": "name()",
       "_callable": true,
       "_origin": "ast",
-      "community": 6,
-      "community_name": "crawl.js",
+      "community": 4,
+      "community_name": "build-rules.js",
       "file_type": "code",
-      "norm_label": "ent()",
-      "source_file": "crawl.js",
-      "source_location": "L7"
-    },
-    {
-      "id": "crawl_get",
-      "label": "get()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "crawl.js",
-      "file_type": "code",
-      "norm_label": "get()",
-      "source_file": "crawl.js",
-      "source_location": "L5"
-    },
-    {
-      "id": "crawl_parse",
-      "label": "parse()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "crawl.js",
-      "file_type": "code",
-      "norm_label": "parse()",
-      "source_file": "crawl.js",
-      "source_location": "L9"
-    },
-    {
-      "id": "crawl_weak",
-      "label": "weak()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "crawl.js",
-      "file_type": "code",
-      "norm_label": "weak()",
-      "source_file": "crawl.js",
-      "source_location": "L6"
-    },
-    {
-      "id": "tools_crawl_ent",
-      "label": "ent()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 7,
-      "community_name": "tools/crawl.js",
-      "file_type": "code",
-      "norm_label": "ent()",
-      "source_file": "tools/crawl.js",
-      "source_location": "L8"
-    },
-    {
-      "id": "tools_crawl_get",
-      "label": "get()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 7,
-      "community_name": "tools/crawl.js",
-      "file_type": "code",
-      "norm_label": "get()",
-      "source_file": "tools/crawl.js",
-      "source_location": "L6"
-    },
-    {
-      "id": "tools_crawl_parse",
-      "label": "parse()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 7,
-      "community_name": "tools/crawl.js",
-      "file_type": "code",
-      "norm_label": "parse()",
-      "source_file": "tools/crawl.js",
+      "norm_label": "name()",
+      "source_file": "tools/build-rules.js",
       "source_location": "L10"
-    },
-    {
-      "id": "tools_crawl_weak",
-      "label": "weak()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 7,
-      "community_name": "tools/crawl.js",
-      "file_type": "code",
-      "norm_label": "weak()",
-      "source_file": "tools/crawl.js",
-      "source_location": "L7"
     },
     {
       "id": "docs_simulation_feedback_v2",
@@ -292,6 +208,42 @@
       "source_location": "L1"
     },
     {
+      "id": "readme_1_\uc778\uc2a4\ud0c0\uc5d0\uc11c_\ub0b4_\ub370\uc774\ud130_\ubc1b\uae30",
+      "label": "1. \uc778\uc2a4\ud0c0\uc5d0\uc11c \ub0b4 \ub370\uc774\ud130 \ubc1b\uae30",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "Savvy: \uc800\uc7a5\ub428 \ucde8\ud5a5 \uc9c0\ub3c4",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "1. \u110b\u1175\u11ab\u1109\u1173\u1110\u1161\u110b\u1166\u1109\u1165 \u1102\u1162 \u1103\u1166\u110b\u1175\u1110\u1165 \u1107\u1161\u11ae\u1100\u1175",
+      "source_file": "README.md",
+      "source_location": "L26"
+    },
+    {
+      "id": "readme_2_\ud398\uc774\uc9c0\uc5d0\uc11c_\uc5f4\uae30",
+      "label": "2. \ud398\uc774\uc9c0\uc5d0\uc11c \uc5f4\uae30",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "Savvy: \uc800\uc7a5\ub428 \ucde8\ud5a5 \uc9c0\ub3c4",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "2. \u1111\u1166\u110b\u1175\u110c\u1175\u110b\u1166\u1109\u1165 \u110b\u1167\u11af\u1100\u1175",
+      "source_file": "README.md",
+      "source_location": "L35"
+    },
+    {
+      "id": "readme_3_\ubd84\ub958_\uaddc\uce59_\ubc14\uafb8\uae30",
+      "label": "3. \ubd84\ub958 \uaddc\uce59 \ubc14\uafb8\uae30",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "Savvy: \uc800\uc7a5\ub428 \ucde8\ud5a5 \uc9c0\ub3c4",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "3. \u1107\u116e\u11ab\u1105\u1172 \u1100\u1172\u110e\u1175\u11a8 \u1107\u1161\u1101\u116e\u1100\u1175",
+      "source_file": "README.md",
+      "source_location": "L39"
+    },
+    {
       "id": "readme_savvy_\uc800\uc7a5\ub428_\ucde8\ud5a5_\uc9c0\ub3c4",
       "label": "Savvy: \uc800\uc7a5\ub428 \ucde8\ud5a5 \uc9c0\ub3c4",
       "_origin": "ast",
@@ -313,7 +265,7 @@
       "node_kind": "heading",
       "norm_label": "\u1100\u1162\u110b\u1175\u11ab\u110c\u1165\u11bc\u1107\u1169",
       "source_file": "README.md",
-      "source_location": "L74"
+      "source_location": "L67"
     },
     {
       "id": "readme_\ub0b4_\ub370\uc774\ud130\ub97c_\ubbf8\ub9ac_\ub2f4\uc740_\uac1c\uc778\uc6a9_\ud398\uc774\uc9c0",
@@ -325,7 +277,7 @@
       "node_kind": "heading",
       "norm_label": "\u1102\u1162 \u1103\u1166\u110b\u1175\u1110\u1165\u1105\u1173\u11af \u1106\u1175\u1105\u1175 \u1103\u1161\u11b7\u110b\u1173\u11ab \u1100\u1162\u110b\u1175\u11ab\u110b\u116d\u11bc \u1111\u1166\u110b\u1175\u110c\u1175",
       "source_file": "README.md",
-      "source_location": "L64"
+      "source_location": "L57"
     },
     {
       "id": "readme_\ub2e4\uc74c\uc5d0_\ud560_\uc77c",
@@ -337,7 +289,7 @@
       "node_kind": "heading",
       "norm_label": "\u1103\u1161\u110b\u1173\u11b7\u110b\u1166 \u1112\u1161\u11af \u110b\u1175\u11af",
       "source_file": "README.md",
-      "source_location": "L113"
+      "source_location": "L112"
     },
     {
       "id": "readme_\ub77c\uc774\uc120\uc2a4",
@@ -349,19 +301,19 @@
       "node_kind": "heading",
       "norm_label": "\u1105\u1161\u110b\u1175\u1109\u1165\u11ab\u1109\u1173",
       "source_file": "README.md",
-      "source_location": "L120"
+      "source_location": "L119"
     },
     {
-      "id": "readme_\uc120\ud0dd_\ub3c4\uad6c",
-      "label": "\uc120\ud0dd \ub3c4\uad6c",
+      "id": "readme_\uc4f0\ub294_\ubc95",
+      "label": "\uc4f0\ub294 \ubc95",
       "_origin": "ast",
       "community": 1,
       "community_name": "Savvy: \uc800\uc7a5\ub428 \ucde8\ud5a5 \uc9c0\ub3c4",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "\u1109\u1165\u11ab\u1110\u1162\u11a8 \u1103\u1169\u1100\u116e",
+      "norm_label": "\u110a\u1173\u1102\u1173\u11ab \u1107\u1165\u11b8",
       "source_file": "README.md",
-      "source_location": "L49"
+      "source_location": "L24"
     },
     {
       "id": "readme_\uc54c\ub824\uc9c4_\ud55c\uacc4",
@@ -373,7 +325,7 @@
       "node_kind": "heading",
       "norm_label": "\u110b\u1161\u11af\u1105\u1167\u110c\u1175\u11ab \u1112\u1161\u11ab\u1100\u1168",
       "source_file": "README.md",
-      "source_location": "L105"
+      "source_location": "L104"
     },
     {
       "id": "readme_\uc62c\ub824\uc11c_\uc4f0\uae30",
@@ -385,7 +337,19 @@
       "node_kind": "heading",
       "norm_label": "\u110b\u1169\u11af\u1105\u1167\u1109\u1165 \u110a\u1173\u1100\u1175",
       "source_file": "README.md",
-      "source_location": "L80"
+      "source_location": "L73"
+    },
+    {
+      "id": "readme_\uc774_\uc800\uc7a5\uc18c\uc5d0_\uc5c6\ub294_\uac83",
+      "label": "\uc774 \uc800\uc7a5\uc18c\uc5d0 \uc5c6\ub294 \uac83",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "Savvy: \uc800\uc7a5\ub428 \ucde8\ud5a5 \uc9c0\ub3c4",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "\u110b\u1175 \u110c\u1165\u110c\u1161\u11bc\u1109\u1169\u110b\u1166 \u110b\u1165\u11b9\u1102\u1173\u11ab \u1100\u1165\u11ba",
+      "source_file": "README.md",
+      "source_location": "L53"
     },
     {
       "id": "readme_\ud3f4\ub354",
@@ -397,7 +361,7 @@
       "node_kind": "heading",
       "norm_label": "\u1111\u1169\u11af\u1103\u1165",
       "source_file": "README.md",
-      "source_location": "L84"
+      "source_location": "L77"
     },
     {
       "id": "readme_\ud560_\uc218_\uc788\ub294_\uac83",
@@ -421,29 +385,7 @@
       "node_kind": "heading",
       "norm_label": "\u1112\u116a\u11a8\u110b\u1175\u11ab\u1112\u1161\u11ab \u1100\u1165\u11ba\u1100\u116a \u1106\u1169\u11ba \u1112\u1161\u11ab \u1100\u1165\u11ba",
       "source_file": "README.md",
-      "source_location": "L92"
-    },
-    {
-      "id": "enrich_saved",
-      "label": "enrich_saved.js",
-      "_origin": "ast",
-      "community": 10,
-      "community_name": "enrich_saved.js",
-      "file_type": "code",
-      "norm_label": "enrich_saved.js",
-      "source_file": "enrich_saved.js",
-      "source_location": "L1"
-    },
-    {
-      "id": "tools_collect_saved",
-      "label": "tools/collect_saved.js",
-      "_origin": "ast",
-      "community": 11,
-      "community_name": "tools/collect_saved.js",
-      "file_type": "code",
-      "norm_label": "tools/collect_saved.js",
-      "source_file": "tools/collect_saved.js",
-      "source_location": "L1"
+      "source_location": "L91"
     },
     {
       "id": "tools_build_personal",
@@ -498,7 +440,18 @@
       "file_type": "code",
       "norm_label": "html",
       "source_file": "tools/build-personal.js",
-      "source_location": "L32"
+      "source_location": "L43"
+    },
+    {
+      "id": "tools_build_personal_imgs",
+      "label": "imgs",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "build-personal.js",
+      "file_type": "code",
+      "norm_label": "imgs",
+      "source_file": "tools/build-personal.js",
+      "source_location": "L13"
     },
     {
       "id": "tools_build_personal_items",
@@ -509,7 +462,7 @@
       "file_type": "code",
       "norm_label": "items",
       "source_file": "tools/build-personal.js",
-      "source_location": "L21"
+      "source_location": "L24"
     },
     {
       "id": "tools_build_personal_json",
@@ -520,7 +473,7 @@
       "file_type": "code",
       "norm_label": "json",
       "source_file": "tools/build-personal.js",
-      "source_location": "L33"
+      "source_location": "L44"
     },
     {
       "id": "tools_build_personal_path",
@@ -534,13 +487,13 @@
       "source_location": "L3"
     },
     {
-      "id": "tools_build_personal_src_cachepath_out_my_saved_map_html",
-      "label": "[src, cachePath = \"-\", out = \"my-saved-map.html\"]",
+      "id": "tools_build_personal_src_cachepath_out_my_saved_map_html_imgpath",
+      "label": "[src, cachePath = \"-\", out = \"my-saved-map.html\", imgPath = \"-\"]",
       "_origin": "ast",
       "community": 2,
       "community_name": "build-personal.js",
       "file_type": "code",
-      "norm_label": "[src, cachepath = \"-\", out = \"my-saved-map.html\"]",
+      "norm_label": "[src, cachepath = \"-\", out = \"my-saved-map.html\", imgpath = \"-\"]",
       "source_file": "tools/build-personal.js",
       "source_location": "L4"
     },
@@ -665,124 +618,136 @@
       "source_location": "L1"
     },
     {
-      "id": "\uc778\uc2a4\ud0c0\uc800\uc7a5\ub300\uc2dc\ubcf4\ub4dc_\uc2dc\ubbac\ub808\uc774\uc158_\ud53c\ub4dc\ubc31",
-      "label": "\uc778\uc2a4\ud0c0\uc800\uc7a5\ub300\uc2dc\ubcf4\ub4dc_\uc2dc\ubbac\ub808\uc774\uc158_\ud53c\ub4dc\ubc31.md",
+      "id": "tools_build_rules",
+      "label": "build-rules.js",
       "_origin": "ast",
       "community": 4,
-      "community_name": "\uc778\uc2a4\ud0c0 \uc800\uc7a5\ub428 \ub300\uc2dc\ubcf4\ub4dc \uc0c1\ud488\ud654 \uc2dc\ubbac\ub808\uc774\uc158 \ud53c\ub4dc\ubc31",
-      "file_type": "document",
-      "node_kind": "page",
-      "norm_label": "\u110b\u1175\u11ab\u1109\u1173\u1110\u1161\u110c\u1165\u110c\u1161\u11bc\u1103\u1162\u1109\u1175\u1107\u1169\u1103\u1173_\u1109\u1175\u1106\u1172\u11af\u1105\u1166\u110b\u1175\u1109\u1167\u11ab_\u1111\u1175\u1103\u1173\u1107\u1162\u11a8.md",
-      "source_file": "\uc778\uc2a4\ud0c0\uc800\uc7a5\ub300\uc2dc\ubcf4\ub4dc_\uc2dc\ubbac\ub808\uc774\uc158_\ud53c\ub4dc\ubc31.md",
+      "community_name": "build-rules.js",
+      "file_type": "code",
+      "norm_label": "build-rules.js",
+      "source_file": "tools/build-rules.js",
       "source_location": "L1"
     },
     {
-      "id": "\uc778\uc2a4\ud0c0\uc800\uc7a5\ub300\uc2dc\ubcf4\ub4dc_\uc2dc\ubbac\ub808\uc774\uc158_\ud53c\ub4dc\ubc31_1_\uacb0\ub860_\ud45c",
-      "label": "1. \uacb0\ub860 \ud45c",
+      "id": "tools_build_rules_base",
+      "label": "base",
       "_origin": "ast",
       "community": 4,
-      "community_name": "\uc778\uc2a4\ud0c0 \uc800\uc7a5\ub428 \ub300\uc2dc\ubcf4\ub4dc \uc0c1\ud488\ud654 \uc2dc\ubbac\ub808\uc774\uc158 \ud53c\ub4dc\ubc31",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "1. \u1100\u1167\u11af\u1105\u1169\u11ab \u1111\u116d",
-      "source_file": "\uc778\uc2a4\ud0c0\uc800\uc7a5\ub300\uc2dc\ubcf4\ub4dc_\uc2dc\ubbac\ub808\uc774\uc158_\ud53c\ub4dc\ubc31.md",
+      "community_name": "build-rules.js",
+      "file_type": "code",
+      "norm_label": "base",
+      "source_file": "tools/build-rules.js",
       "source_location": "L5"
     },
     {
-      "id": "\uc778\uc2a4\ud0c0\uc800\uc7a5\ub300\uc2dc\ubcf4\ub4dc_\uc2dc\ubbac\ub808\uc774\uc158_\ud53c\ub4dc\ubc31_2_\uc778\ubb3c\ubcc4_\uc810\uc218",
-      "label": "2. \uc778\ubb3c\ubcc4 \uc810\uc218",
+      "id": "tools_build_rules_first",
+      "label": "FIRST",
       "_origin": "ast",
       "community": 4,
-      "community_name": "\uc778\uc2a4\ud0c0 \uc800\uc7a5\ub428 \ub300\uc2dc\ubcf4\ub4dc \uc0c1\ud488\ud654 \uc2dc\ubbac\ub808\uc774\uc158 \ud53c\ub4dc\ubc31",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "2. \u110b\u1175\u11ab\u1106\u116e\u11af\u1107\u1167\u11af \u110c\u1165\u11b7\u1109\u116e",
-      "source_file": "\uc778\uc2a4\ud0c0\uc800\uc7a5\ub300\uc2dc\ubcf4\ub4dc_\uc2dc\ubbac\ub808\uc774\uc158_\ud53c\ub4dc\ubc31.md",
-      "source_location": "L16"
+      "community_name": "build-rules.js",
+      "file_type": "code",
+      "norm_label": "first",
+      "source_file": "tools/build-rules.js",
+      "source_location": "L9"
     },
     {
-      "id": "\uc778\uc2a4\ud0c0\uc800\uc7a5\ub300\uc2dc\ubcf4\ub4dc_\uc2dc\ubbac\ub808\uc774\uc158_\ud53c\ub4dc\ubc31_3_\uc804\uc6d0_\ub610\ub294_\ub2e4\uc218\uac00_\ub3d9\uc758\ud55c_\uac83",
-      "label": "3. \uc804\uc6d0 \ub610\ub294 \ub2e4\uc218\uac00 \ub3d9\uc758\ud55c \uac83",
+      "id": "tools_build_rules_fs",
+      "label": "fs",
       "_origin": "ast",
       "community": 4,
-      "community_name": "\uc778\uc2a4\ud0c0 \uc800\uc7a5\ub428 \ub300\uc2dc\ubcf4\ub4dc \uc0c1\ud488\ud654 \uc2dc\ubbac\ub808\uc774\uc158 \ud53c\ub4dc\ubc31",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "3. \u110c\u1165\u11ab\u110b\u116f\u11ab \u1104\u1169\u1102\u1173\u11ab \u1103\u1161\u1109\u116e\u1100\u1161 \u1103\u1169\u11bc\u110b\u1174\u1112\u1161\u11ab \u1100\u1165\u11ba",
-      "source_file": "\uc778\uc2a4\ud0c0\uc800\uc7a5\ub300\uc2dc\ubcf4\ub4dc_\uc2dc\ubbac\ub808\uc774\uc158_\ud53c\ub4dc\ubc31.md",
-      "source_location": "L29"
+      "community_name": "build-rules.js",
+      "file_type": "code",
+      "norm_label": "fs",
+      "source_file": "tools/build-rules.js",
+      "source_location": "L3"
     },
     {
-      "id": "\uc778\uc2a4\ud0c0\uc800\uc7a5\ub300\uc2dc\ubcf4\ub4dc_\uc2dc\ubbac\ub808\uc774\uc158_\ud53c\ub4dc\ubc31_4_\uc7c1\uc810\ubcc4_\uacb0\ub860\uacfc_\uc18c\uc218_\uc758\uacac",
-      "label": "4. \uc7c1\uc810\ubcc4 \uacb0\ub860\uacfc \uc18c\uc218 \uc758\uacac",
+      "id": "tools_build_rules_h",
+      "label": "h",
       "_origin": "ast",
       "community": 4,
-      "community_name": "\uc778\uc2a4\ud0c0 \uc800\uc7a5\ub428 \ub300\uc2dc\ubcf4\ub4dc \uc0c1\ud488\ud654 \uc2dc\ubbac\ub808\uc774\uc158 \ud53c\ub4dc\ubc31",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "4. \u110c\u1162\u11bc\u110c\u1165\u11b7\u1107\u1167\u11af \u1100\u1167\u11af\u1105\u1169\u11ab\u1100\u116a \u1109\u1169\u1109\u116e \u110b\u1174\u1100\u1167\u11ab",
-      "source_file": "\uc778\uc2a4\ud0c0\uc800\uc7a5\ub300\uc2dc\ubcf4\ub4dc_\uc2dc\ubbac\ub808\uc774\uc158_\ud53c\ub4dc\ubc31.md",
-      "source_location": "L38"
+      "community_name": "build-rules.js",
+      "file_type": "code",
+      "norm_label": "h",
+      "source_file": "tools/build-rules.js",
+      "source_location": "L58"
     },
     {
-      "id": "\uc778\uc2a4\ud0c0\uc800\uc7a5\ub300\uc2dc\ubcf4\ub4dc_\uc2dc\ubbac\ub808\uc774\uc158_\ud53c\ub4dc\ubc31_5_\uc2e4\ud589\uc548_\uc81c\uc548",
-      "label": "5. \uc2e4\ud589\uc548 (\uc81c\uc548)",
+      "id": "tools_build_rules_m",
+      "label": "m",
       "_origin": "ast",
       "community": 4,
-      "community_name": "\uc778\uc2a4\ud0c0 \uc800\uc7a5\ub428 \ub300\uc2dc\ubcf4\ub4dc \uc0c1\ud488\ud654 \uc2dc\ubbac\ub808\uc774\uc158 \ud53c\ub4dc\ubc31",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "5. \u1109\u1175\u11af\u1112\u1162\u11bc\u110b\u1161\u11ab (\u110c\u1166\u110b\u1161\u11ab)",
-      "source_file": "\uc778\uc2a4\ud0c0\uc800\uc7a5\ub300\uc2dc\ubcf4\ub4dc_\uc2dc\ubbac\ub808\uc774\uc158_\ud53c\ub4dc\ubc31.md",
+      "community_name": "build-rules.js",
+      "file_type": "code",
+      "norm_label": "m",
+      "source_file": "tools/build-rules.js",
+      "source_location": "L59"
+    },
+    {
+      "id": "tools_build_rules_p",
+      "label": "p",
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "build-rules.js",
+      "file_type": "code",
+      "norm_label": "p",
+      "source_file": "tools/build-rules.js",
+      "source_location": "L57"
+    },
+    {
+      "id": "tools_build_rules_path",
+      "label": "path",
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "build-rules.js",
+      "file_type": "code",
+      "norm_label": "path",
+      "source_file": "tools/build-rules.js",
+      "source_location": "L3"
+    },
+    {
+      "id": "tools_build_rules_root",
+      "label": "root",
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "build-rules.js",
+      "file_type": "code",
+      "norm_label": "root",
+      "source_file": "tools/build-rules.js",
+      "source_location": "L4"
+    },
+    {
+      "id": "tools_build_rules_rules",
+      "label": "rules",
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "build-rules.js",
+      "file_type": "code",
+      "norm_label": "rules",
+      "source_file": "tools/build-rules.js",
       "source_location": "L55"
     },
     {
-      "id": "\uc778\uc2a4\ud0c0\uc800\uc7a5\ub300\uc2dc\ubcf4\ub4dc_\uc2dc\ubbac\ub808\uc774\uc158_\ud53c\ub4dc\ubc31_6_\uc778\ubb3c\ub4e4\uc774_\ud655\uc778\ud558\uace0_\uc2f6\ub2e4\uace0_\ud55c_\uac83",
-      "label": "6. \uc778\ubb3c\ub4e4\uc774 \ud655\uc778\ud558\uace0 \uc2f6\ub2e4\uace0 \ud55c \uac83",
+      "id": "tools_build_rules_sub",
+      "label": "SUB",
       "_origin": "ast",
       "community": 4,
-      "community_name": "\uc778\uc2a4\ud0c0 \uc800\uc7a5\ub428 \ub300\uc2dc\ubcf4\ub4dc \uc0c1\ud488\ud654 \uc2dc\ubbac\ub808\uc774\uc158 \ud53c\ub4dc\ubc31",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "6. \u110b\u1175\u11ab\u1106\u116e\u11af\u1103\u1173\u11af\u110b\u1175 \u1112\u116a\u11a8\u110b\u1175\u11ab\u1112\u1161\u1100\u1169 \u1109\u1175\u11c1\u1103\u1161\u1100\u1169 \u1112\u1161\u11ab \u1100\u1165\u11ba",
-      "source_file": "\uc778\uc2a4\ud0c0\uc800\uc7a5\ub300\uc2dc\ubcf4\ub4dc_\uc2dc\ubbac\ub808\uc774\uc158_\ud53c\ub4dc\ubc31.md",
-      "source_location": "L64"
+      "community_name": "build-rules.js",
+      "file_type": "code",
+      "norm_label": "sub",
+      "source_file": "tools/build-rules.js",
+      "source_location": "L15"
     },
     {
-      "id": "\uc778\uc2a4\ud0c0\uc800\uc7a5\ub300\uc2dc\ubcf4\ub4dc_\uc2dc\ubbac\ub808\uc774\uc158_\ud53c\ub4dc\ubc31_7_\ud55c\uacc4",
-      "label": "7. \ud55c\uacc4",
+      "id": "tools_build_rules_top",
+      "label": "top",
       "_origin": "ast",
       "community": 4,
-      "community_name": "\uc778\uc2a4\ud0c0 \uc800\uc7a5\ub428 \ub300\uc2dc\ubcf4\ub4dc \uc0c1\ud488\ud654 \uc2dc\ubbac\ub808\uc774\uc158 \ud53c\ub4dc\ubc31",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "7. \u1112\u1161\u11ab\u1100\u1168",
-      "source_file": "\uc778\uc2a4\ud0c0\uc800\uc7a5\ub300\uc2dc\ubcf4\ub4dc_\uc2dc\ubbac\ub808\uc774\uc158_\ud53c\ub4dc\ubc31.md",
-      "source_location": "L72"
-    },
-    {
-      "id": "\uc778\uc2a4\ud0c0\uc800\uc7a5\ub300\uc2dc\ubcf4\ub4dc_\uc2dc\ubbac\ub808\uc774\uc158_\ud53c\ub4dc\ubc31_8_\ud604\uc7ac_\uc0c1\ud0dc\uc640\uc758_\ub300\uc751\ud45c",
-      "label": "8. \ud604\uc7ac \uc0c1\ud0dc\uc640\uc758 \ub300\uc751\ud45c",
-      "_origin": "ast",
-      "community": 4,
-      "community_name": "\uc778\uc2a4\ud0c0 \uc800\uc7a5\ub428 \ub300\uc2dc\ubcf4\ub4dc \uc0c1\ud488\ud654 \uc2dc\ubbac\ub808\uc774\uc158 \ud53c\ub4dc\ubc31",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "8. \u1112\u1167\u11ab\u110c\u1162 \u1109\u1161\u11bc\u1110\u1162\u110b\u116a\u110b\u1174 \u1103\u1162\u110b\u1173\u11bc\u1111\u116d",
-      "source_file": "\uc778\uc2a4\ud0c0\uc800\uc7a5\ub300\uc2dc\ubcf4\ub4dc_\uc2dc\ubbac\ub808\uc774\uc158_\ud53c\ub4dc\ubc31.md",
-      "source_location": "L80"
-    },
-    {
-      "id": "\uc778\uc2a4\ud0c0\uc800\uc7a5\ub300\uc2dc\ubcf4\ub4dc_\uc2dc\ubbac\ub808\uc774\uc158_\ud53c\ub4dc\ubc31_\uc778\uc2a4\ud0c0_\uc800\uc7a5\ub428_\ub300\uc2dc\ubcf4\ub4dc_\uc0c1\ud488\ud654_\uc2dc\ubbac\ub808\uc774\uc158_\ud53c\ub4dc\ubc31",
-      "label": "\uc778\uc2a4\ud0c0 \uc800\uc7a5\ub428 \ub300\uc2dc\ubcf4\ub4dc \uc0c1\ud488\ud654 \uc2dc\ubbac\ub808\uc774\uc158 \ud53c\ub4dc\ubc31",
-      "_origin": "ast",
-      "community": 4,
-      "community_name": "\uc778\uc2a4\ud0c0 \uc800\uc7a5\ub428 \ub300\uc2dc\ubcf4\ub4dc \uc0c1\ud488\ud654 \uc2dc\ubbac\ub808\uc774\uc158 \ud53c\ub4dc\ubc31",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "\u110b\u1175\u11ab\u1109\u1173\u1110\u1161 \u110c\u1165\u110c\u1161\u11bc\u1103\u116c\u11b7 \u1103\u1162\u1109\u1175\u1107\u1169\u1103\u1173 \u1109\u1161\u11bc\u1111\u116e\u11b7\u1112\u116a \u1109\u1175\u1106\u1172\u11af\u1105\u1166\u110b\u1175\u1109\u1167\u11ab \u1111\u1175\u1103\u1173\u1107\u1162\u11a8",
-      "source_file": "\uc778\uc2a4\ud0c0\uc800\uc7a5\ub300\uc2dc\ubcf4\ub4dc_\uc2dc\ubbac\ub808\uc774\uc158_\ud53c\ub4dc\ubc31.md",
-      "source_location": "L1"
+      "community_name": "build-rules.js",
+      "file_type": "code",
+      "norm_label": "top",
+      "source_file": "tools/build-rules.js",
+      "source_location": "L6"
     },
     {
       "id": "docs_proposals_v2",
@@ -881,111 +846,237 @@
       "source_location": "L1"
     },
     {
-      "id": "crawl",
-      "label": "crawl.js",
+      "id": "docs_deployment_sim",
+      "label": "deployment-sim.md",
       "_origin": "ast",
       "community": 6,
-      "community_name": "crawl.js",
-      "file_type": "code",
-      "norm_label": "crawl.js",
-      "source_file": "crawl.js",
+      "community_name": "\ubc30\ud3ec \ubc29\uc2dd\uacfc \uc2dc\uc7a5 \ubc18\uc751 \ud655\uc778 \uc2dc\ubbac\ub808\uc774\uc158 (2026-10-07)",
+      "file_type": "document",
+      "node_kind": "page",
+      "norm_label": "deployment-sim.md",
+      "source_file": "docs/deployment-sim.md",
       "source_location": "L1"
     },
     {
-      "id": "crawl_fs",
-      "label": "fs",
+      "id": "docs_deployment_sim_\uacb0\ub860_\ud45c",
+      "label": "\uacb0\ub860 \ud45c",
       "_origin": "ast",
       "community": 6,
-      "community_name": "crawl.js",
-      "file_type": "code",
-      "norm_label": "fs",
-      "source_file": "crawl.js",
-      "source_location": "L2"
+      "community_name": "\ubc30\ud3ec \ubc29\uc2dd\uacfc \uc2dc\uc7a5 \ubc18\uc751 \ud655\uc778 \uc2dc\ubbac\ub808\uc774\uc158 (2026-10-07)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "\u1100\u1167\u11af\u1105\u1169\u11ab \u1111\u116d",
+      "source_file": "docs/deployment-sim.md",
+      "source_location": "L5"
     },
     {
-      "id": "tools_crawl",
-      "label": "tools/crawl.js",
+      "id": "docs_deployment_sim_\uacf5\uac1c_\uc804_\uccb4\ud06c\ub9ac\uc2a4\ud2b8_\uc778\ubb3c\ub4e4\uc758_\uc694\uad6c\ub97c_\ubaa8\uc740_\uac83",
+      "label": "\uacf5\uac1c \uc804 \uccb4\ud06c\ub9ac\uc2a4\ud2b8 (\uc778\ubb3c\ub4e4\uc758 \uc694\uad6c\ub97c \ubaa8\uc740 \uac83)",
       "_origin": "ast",
-      "community": 7,
-      "community_name": "tools/crawl.js",
-      "file_type": "code",
-      "norm_label": "tools/crawl.js",
-      "source_file": "tools/crawl.js",
+      "community": 6,
+      "community_name": "\ubc30\ud3ec \ubc29\uc2dd\uacfc \uc2dc\uc7a5 \ubc18\uc751 \ud655\uc778 \uc2dc\ubbac\ub808\uc774\uc158 (2026-10-07)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "\u1100\u1169\u11bc\u1100\u1162 \u110c\u1165\u11ab \u110e\u1166\u110f\u1173\u1105\u1175\u1109\u1173\u1110\u1173 (\u110b\u1175\u11ab\u1106\u116e\u11af\u1103\u1173\u11af\u110b\u1174 \u110b\u116d\u1100\u116e\u1105\u1173\u11af \u1106\u1169\u110b\u1173\u11ab \u1100\u1165\u11ba)",
+      "source_file": "docs/deployment-sim.md",
+      "source_location": "L36"
+    },
+    {
+      "id": "docs_deployment_sim_\ub2e4\uc218\uac00_\ub3d9\uc758\ud55c_\uac83",
+      "label": "\ub2e4\uc218\uac00 \ub3d9\uc758\ud55c \uac83",
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "\ubc30\ud3ec \ubc29\uc2dd\uacfc \uc2dc\uc7a5 \ubc18\uc751 \ud655\uc778 \uc2dc\ubbac\ub808\uc774\uc158 (2026-10-07)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "\u1103\u1161\u1109\u116e\u1100\u1161 \u1103\u1169\u11bc\u110b\u1174\u1112\u1161\u11ab \u1100\u1165\u11ba",
+      "source_file": "docs/deployment-sim.md",
+      "source_location": "L16"
+    },
+    {
+      "id": "docs_deployment_sim_\ub9b4\uc2a4_\uc18c\uc7ac_\ud6c4\ubcf4_\uadf8\ub85c\uc2a4_\uc778\ubb3c",
+      "label": "\ub9b4\uc2a4 \uc18c\uc7ac \ud6c4\ubcf4 (\uadf8\ub85c\uc2a4 \uc778\ubb3c)",
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "\ubc30\ud3ec \ubc29\uc2dd\uacfc \uc2dc\uc7a5 \ubc18\uc751 \ud655\uc778 \uc2dc\ubbac\ub808\uc774\uc158 (2026-10-07)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "\u1105\u1175\u11af\u1109\u1173 \u1109\u1169\u110c\u1162 \u1112\u116e\u1107\u1169 (\u1100\u1173\u1105\u1169\u1109\u1173 \u110b\u1175\u11ab\u1106\u116e\u11af)",
+      "source_file": "docs/deployment-sim.md",
+      "source_location": "L55"
+    },
+    {
+      "id": "docs_deployment_sim_\ubc30\ud3ec_\ubc29\uc2dd\uacfc_\uc2dc\uc7a5_\ubc18\uc751_\ud655\uc778_\uc2dc\ubbac\ub808\uc774\uc158_2026_10_07",
+      "label": "\ubc30\ud3ec \ubc29\uc2dd\uacfc \uc2dc\uc7a5 \ubc18\uc751 \ud655\uc778 \uc2dc\ubbac\ub808\uc774\uc158 (2026-10-07)",
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "\ubc30\ud3ec \ubc29\uc2dd\uacfc \uc2dc\uc7a5 \ubc18\uc751 \ud655\uc778 \uc2dc\ubbac\ub808\uc774\uc158 (2026-10-07)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "\u1107\u1162\u1111\u1169 \u1107\u1161\u11bc\u1109\u1175\u11a8\u1100\u116a \u1109\u1175\u110c\u1161\u11bc \u1107\u1161\u11ab\u110b\u1173\u11bc \u1112\u116a\u11a8\u110b\u1175\u11ab \u1109\u1175\u1106\u1172\u11af\u1105\u1166\u110b\u1175\u1109\u1167\u11ab (2026-10-07)",
+      "source_file": "docs/deployment-sim.md",
       "source_location": "L1"
     },
     {
-      "id": "tools_crawl_fs",
-      "label": "fs",
+      "id": "docs_deployment_sim_\uc0ac\uc6a9\uc790_\uc778\ubb3c\uc774_\ub9d0\ud55c_\uae54\ub54c\uae30",
+      "label": "\uc0ac\uc6a9\uc790 \uc778\ubb3c\uc774 \ub9d0\ud55c \uae54\ub54c\uae30",
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "\ubc30\ud3ec \ubc29\uc2dd\uacfc \uc2dc\uc7a5 \ubc18\uc751 \ud655\uc778 \uc2dc\ubbac\ub808\uc774\uc158 (2026-10-07)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "\u1109\u1161\u110b\u116d\u11bc\u110c\u1161 \u110b\u1175\u11ab\u1106\u116e\u11af\u110b\u1175 \u1106\u1161\u11af\u1112\u1161\u11ab \u1101\u1161\u11af\u1104\u1162\u1100\u1175",
+      "source_file": "docs/deployment-sim.md",
+      "source_location": "L24"
+    },
+    {
+      "id": "docs_deployment_sim_\uccab_2\uc8fc_1\uc778_\uac1c\ubc1c\uc790_\uc778\ubb3c\uc758_4\ub2e8\uacc4",
+      "label": "\uccab 2\uc8fc (1\uc778 \uac1c\ubc1c\uc790 \uc778\ubb3c\uc758 4\ub2e8\uacc4)",
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "\ubc30\ud3ec \ubc29\uc2dd\uacfc \uc2dc\uc7a5 \ubc18\uc751 \ud655\uc778 \uc2dc\ubbac\ub808\uc774\uc158 (2026-10-07)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "\u110e\u1165\u11ba 2\u110c\u116e (1\u110b\u1175\u11ab \u1100\u1162\u1107\u1161\u11af\u110c\u1161 \u110b\u1175\u11ab\u1106\u116e\u11af\u110b\u1174 4\u1103\u1161\u11ab\u1100\u1168)",
+      "source_file": "docs/deployment-sim.md",
+      "source_location": "L46"
+    },
+    {
+      "id": "docs_deployment_sim_\ud55c\uacc4",
+      "label": "\ud55c\uacc4",
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "\ubc30\ud3ec \ubc29\uc2dd\uacfc \uc2dc\uc7a5 \ubc18\uc751 \ud655\uc778 \uc2dc\ubbac\ub808\uc774\uc158 (2026-10-07)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "\u1112\u1161\u11ab\u1100\u1168",
+      "source_file": "docs/deployment-sim.md",
+      "source_location": "L61"
+    },
+    {
+      "id": "docs_success_criteria",
+      "label": "success-criteria.md",
       "_origin": "ast",
       "community": 7,
-      "community_name": "tools/crawl.js",
-      "file_type": "code",
-      "norm_label": "fs",
-      "source_file": "tools/crawl.js",
-      "source_location": "L2"
-    },
-    {
-      "id": "readme_1_\uc778\uc2a4\ud0c0\uc5d0\uc11c_\ub0b4_\ub370\uc774\ud130_\ubc1b\uae30",
-      "label": "1. \uc778\uc2a4\ud0c0\uc5d0\uc11c \ub0b4 \ub370\uc774\ud130 \ubc1b\uae30",
-      "_origin": "ast",
-      "community": 8,
-      "community_name": "\uc4f0\ub294 \ubc95",
+      "community_name": "\uc131\uacf5\u00b7\uc911\ub2e8 \uae30\uc900 (\uacf5\uac1c \uc804\uc5d0 \uc815\ud568)",
       "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "1. \u110b\u1175\u11ab\u1109\u1173\u1110\u1161\u110b\u1166\u1109\u1165 \u1102\u1162 \u1103\u1166\u110b\u1175\u1110\u1165 \u1107\u1161\u11ae\u1100\u1175",
-      "source_file": "README.md",
-      "source_location": "L22"
-    },
-    {
-      "id": "readme_2_\ud398\uc774\uc9c0\uc5d0\uc11c_\uc5f4\uae30",
-      "label": "2. \ud398\uc774\uc9c0\uc5d0\uc11c \uc5f4\uae30",
-      "_origin": "ast",
-      "community": 8,
-      "community_name": "\uc4f0\ub294 \ubc95",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "2. \u1111\u1166\u110b\u1175\u110c\u1175\u110b\u1166\u1109\u1165 \u110b\u1167\u11af\u1100\u1175",
-      "source_file": "README.md",
-      "source_location": "L31"
-    },
-    {
-      "id": "readme_3_\ubd84\ub958_\uaddc\uce59_\ubc14\uafb8\uae30",
-      "label": "3. \ubd84\ub958 \uaddc\uce59 \ubc14\uafb8\uae30",
-      "_origin": "ast",
-      "community": 8,
-      "community_name": "\uc4f0\ub294 \ubc95",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "3. \u1107\u116e\u11ab\u1105\u1172 \u1100\u1172\u110e\u1175\u11a8 \u1107\u1161\u1101\u116e\u1100\u1175",
-      "source_file": "README.md",
-      "source_location": "L35"
-    },
-    {
-      "id": "readme_\uc4f0\ub294_\ubc95",
-      "label": "\uc4f0\ub294 \ubc95",
-      "_origin": "ast",
-      "community": 8,
-      "community_name": "\uc4f0\ub294 \ubc95",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "\u110a\u1173\u1102\u1173\u11ab \u1107\u1165\u11b8",
-      "source_file": "README.md",
-      "source_location": "L20"
-    },
-    {
-      "id": "collect_saved",
-      "label": "collect_saved.js",
-      "_origin": "ast",
-      "community": 9,
-      "community_name": "collect_saved.js",
-      "file_type": "code",
-      "norm_label": "collect_saved.js",
-      "source_file": "collect_saved.js",
+      "node_kind": "page",
+      "norm_label": "success-criteria.md",
+      "source_file": "docs/success-criteria.md",
       "source_location": "L1"
+    },
+    {
+      "id": "docs_success_criteria_1\ub2e8\uacc4_\uacf5\uac1c_\uc804_\uad00\ubb38",
+      "label": "1\ub2e8\uacc4: \uacf5\uac1c \uc804 \uad00\ubb38",
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "\uc131\uacf5\u00b7\uc911\ub2e8 \uae30\uc900 (\uacf5\uac1c \uc804\uc5d0 \uc815\ud568)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "1\u1103\u1161\u11ab\u1100\u1168: \u1100\u1169\u11bc\u1100\u1162 \u110c\u1165\u11ab \u1100\u116a\u11ab\u1106\u116e\u11ab",
+      "source_file": "docs/success-criteria.md",
+      "source_location": "L12"
+    },
+    {
+      "id": "docs_success_criteria_2\ub2e8\uacc4_\ub178\ucd9c_\ud655\uc778",
+      "label": "2\ub2e8\uacc4: \ub178\ucd9c \ud655\uc778",
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "\uc131\uacf5\u00b7\uc911\ub2e8 \uae30\uc900 (\uacf5\uac1c \uc804\uc5d0 \uc815\ud568)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "2\u1103\u1161\u11ab\u1100\u1168: \u1102\u1169\u110e\u116e\u11af \u1112\u116a\u11a8\u110b\u1175\u11ab",
+      "source_file": "docs/success-criteria.md",
+      "source_location": "L21"
+    },
+    {
+      "id": "docs_success_criteria_3\ub2e8\uacc4_14\uc77c\uc9f8_\ud310\uc815",
+      "label": "3\ub2e8\uacc4: 14\uc77c\uc9f8 \ud310\uc815",
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "\uc131\uacf5\u00b7\uc911\ub2e8 \uae30\uc900 (\uacf5\uac1c \uc804\uc5d0 \uc815\ud568)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "3\u1103\u1161\u11ab\u1100\u1168: 14\u110b\u1175\u11af\u110d\u1162 \u1111\u1161\u11ab\u110c\u1165\u11bc",
+      "source_file": "docs/success-criteria.md",
+      "source_location": "L26"
+    },
+    {
+      "id": "docs_success_criteria_\ubcf4\uc815_\uae30\ub85d",
+      "label": "\ubcf4\uc815 \uae30\ub85d",
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "\uc131\uacf5\u00b7\uc911\ub2e8 \uae30\uc900 (\uacf5\uac1c \uc804\uc5d0 \uc815\ud568)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "\u1107\u1169\u110c\u1165\u11bc \u1100\u1175\u1105\u1169\u11a8",
+      "source_file": "docs/success-criteria.md",
+      "source_location": "L50"
+    },
+    {
+      "id": "docs_success_criteria_\uc131\uacf5_\uc911\ub2e8_\uae30\uc900_\uacf5\uac1c_\uc804\uc5d0_\uc815\ud568",
+      "label": "\uc131\uacf5\u00b7\uc911\ub2e8 \uae30\uc900 (\uacf5\uac1c \uc804\uc5d0 \uc815\ud568)",
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "\uc131\uacf5\u00b7\uc911\ub2e8 \uae30\uc900 (\uacf5\uac1c \uc804\uc5d0 \uc815\ud568)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "\u1109\u1165\u11bc\u1100\u1169\u11bc\u00b7\u110c\u116e\u11bc\u1103\u1161\u11ab \u1100\u1175\u110c\u116e\u11ab (\u1100\u1169\u11bc\u1100\u1162 \u110c\u1165\u11ab\u110b\u1166 \u110c\u1165\u11bc\u1112\u1161\u11b7)",
+      "source_file": "docs/success-criteria.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "docs_success_criteria_\uc6a9\uc5b4_\ubd84\ubaa8\ub97c_\uace0\uc815\ud55c\ub2e4",
+      "label": "\uc6a9\uc5b4(\ubd84\ubaa8\ub97c \uace0\uc815\ud55c\ub2e4)",
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "\uc131\uacf5\u00b7\uc911\ub2e8 \uae30\uc900 (\uacf5\uac1c \uc804\uc5d0 \uc815\ud568)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "\u110b\u116d\u11bc\u110b\u1165(\u1107\u116e\u11ab\u1106\u1169\u1105\u1173\u11af \u1100\u1169\u110c\u1165\u11bc\u1112\u1161\u11ab\u1103\u1161)",
+      "source_file": "docs/success-criteria.md",
+      "source_location": "L5"
+    },
+    {
+      "id": "docs_success_criteria_\uc774_\uc22b\uc790\ub4e4\uc774_\ub9d0\ud574_\uc8fc\ub294_\uac83",
+      "label": "\uc774 \uc22b\uc790\ub4e4\uc774 \ub9d0\ud574 \uc8fc\ub294 \uac83",
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "\uc131\uacf5\u00b7\uc911\ub2e8 \uae30\uc900 (\uacf5\uac1c \uc804\uc5d0 \uc815\ud568)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "\u110b\u1175 \u1109\u116e\u11ba\u110c\u1161\u1103\u1173\u11af\u110b\u1175 \u1106\u1161\u11af\u1112\u1162 \u110c\u116e\u1102\u1173\u11ab \u1100\u1165\u11ba",
+      "source_file": "docs/success-criteria.md",
+      "source_location": "L41"
+    },
+    {
+      "id": "docs_success_criteria_\uc815\ud558\uc9c0_\uc54a\uc740_\uac83",
+      "label": "\uc815\ud558\uc9c0 \uc54a\uc740 \uac83",
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "\uc131\uacf5\u00b7\uc911\ub2e8 \uae30\uc900 (\uacf5\uac1c \uc804\uc5d0 \uc815\ud568)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "\u110c\u1165\u11bc\u1112\u1161\u110c\u1175 \u110b\u1161\u11ad\u110b\u1173\u11ab \u1100\u1165\u11ba",
+      "source_file": "docs/success-criteria.md",
+      "source_location": "L45"
+    },
+    {
+      "id": "ref_fs",
+      "label": "ref_fs",
+      "_origin": "semantic",
+      "community": 2,
+      "community_name": "build-personal.js",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "ref_fs",
+      "source_file": "",
+      "type": "external"
     },
     {
       "id": "ref_path",
       "label": "ref_path",
+      "_origin": "semantic",
       "community": 2,
       "community_name": "build-personal.js",
       "external": true,
@@ -993,32 +1084,9 @@
       "norm_label": "ref_path",
       "source_file": "",
       "type": "external"
-    },
-    {
-      "id": "ref_fs",
-      "label": "ref_fs",
-      "community": 6,
-      "community_name": "crawl.js",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "ref_fs",
-      "source_file": "",
-      "type": "external"
     }
   ],
   "links": [
-    {
-      "source": "crawl_parse",
-      "target": "crawl_ent",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "crawl.js",
-      "source_location": "L11",
-      "weight": 1.0
-    },
     {
       "source": "tools_build_personal_items",
       "target": "tools_build_personal_get",
@@ -1028,7 +1096,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "tools/build-personal.js",
-      "source_location": "L22",
+      "source_location": "L25",
       "weight": 1.0
     },
     {
@@ -1040,103 +1108,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "tools/build-personal.js",
-      "source_location": "L29",
-      "weight": 1.0
-    },
-    {
-      "source": "tools_crawl_parse",
-      "target": "tools_crawl_ent",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "tools/crawl.js",
-      "source_location": "L12",
-      "weight": 1.0
-    },
-    {
-      "source": "crawl",
-      "target": "crawl_get",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "crawl.js",
-      "source_location": "L5",
-      "weight": 1.0
-    },
-    {
-      "source": "crawl",
-      "target": "crawl_weak",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "crawl.js",
-      "source_location": "L6",
-      "weight": 1.0
-    },
-    {
-      "source": "crawl",
-      "target": "crawl_parse",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "crawl.js",
-      "source_location": "L9",
-      "weight": 1.0
-    },
-    {
-      "source": "tools_crawl",
-      "target": "tools_crawl_parse",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "tools/crawl.js",
-      "source_location": "L10",
-      "weight": 1.0
-    },
-    {
-      "source": "tools_crawl",
-      "target": "tools_crawl_get",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "tools/crawl.js",
-      "source_location": "L6",
-      "weight": 1.0
-    },
-    {
-      "source": "tools_crawl",
-      "target": "tools_crawl_weak",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "tools/crawl.js",
-      "source_location": "L7",
-      "weight": 1.0
-    },
-    {
-      "source": "crawl",
-      "target": "ref_fs",
-      "relation": "imports_from",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "crawl.js",
-      "source_location": "L2",
+      "source_location": "L40",
       "weight": 1.0
     },
     {
@@ -1164,37 +1136,115 @@
       "weight": 1.0
     },
     {
-      "source": "tools_crawl",
+      "source": "tools_build_rules",
       "target": "ref_fs",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "context": "import",
-      "source_file": "tools/crawl.js",
-      "source_location": "L2",
+      "source_file": "tools/build-rules.js",
+      "source_location": "L3",
       "weight": 1.0
     },
     {
-      "source": "crawl",
-      "target": "crawl_fs",
+      "source": "tools_build_rules",
+      "target": "ref_path",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "tools/build-rules.js",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_deployment_sim",
+      "target": "docs_deployment_sim_\ubc30\ud3ec_\ubc29\uc2dd\uacfc_\uc2dc\uc7a5_\ubc18\uc751_\ud655\uc778_\uc2dc\ubbac\ub808\uc774\uc158_2026_10_07",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": "crawl.js",
-      "source_location": "L2",
+      "source_file": "docs/deployment-sim.md",
+      "source_location": "L1",
       "weight": 1.0
     },
     {
-      "source": "crawl",
-      "target": "crawl_ent",
+      "source": "docs_deployment_sim_\ubc30\ud3ec_\ubc29\uc2dd\uacfc_\uc2dc\uc7a5_\ubc18\uc751_\ud655\uc778_\uc2dc\ubbac\ub808\uc774\uc158_2026_10_07",
+      "target": "docs_deployment_sim_\ub2e4\uc218\uac00_\ub3d9\uc758\ud55c_\uac83",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": "crawl.js",
-      "source_location": "L7",
+      "source_file": "docs/deployment-sim.md",
+      "source_location": "L16",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_deployment_sim_\ubc30\ud3ec_\ubc29\uc2dd\uacfc_\uc2dc\uc7a5_\ubc18\uc751_\ud655\uc778_\uc2dc\ubbac\ub808\uc774\uc158_2026_10_07",
+      "target": "docs_deployment_sim_\uc0ac\uc6a9\uc790_\uc778\ubb3c\uc774_\ub9d0\ud55c_\uae54\ub54c\uae30",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/deployment-sim.md",
+      "source_location": "L24",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_deployment_sim_\ubc30\ud3ec_\ubc29\uc2dd\uacfc_\uc2dc\uc7a5_\ubc18\uc751_\ud655\uc778_\uc2dc\ubbac\ub808\uc774\uc158_2026_10_07",
+      "target": "docs_deployment_sim_\uacf5\uac1c_\uc804_\uccb4\ud06c\ub9ac\uc2a4\ud2b8_\uc778\ubb3c\ub4e4\uc758_\uc694\uad6c\ub97c_\ubaa8\uc740_\uac83",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/deployment-sim.md",
+      "source_location": "L36",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_deployment_sim_\ubc30\ud3ec_\ubc29\uc2dd\uacfc_\uc2dc\uc7a5_\ubc18\uc751_\ud655\uc778_\uc2dc\ubbac\ub808\uc774\uc158_2026_10_07",
+      "target": "docs_deployment_sim_\uccab_2\uc8fc_1\uc778_\uac1c\ubc1c\uc790_\uc778\ubb3c\uc758_4\ub2e8\uacc4",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/deployment-sim.md",
+      "source_location": "L46",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_deployment_sim_\ubc30\ud3ec_\ubc29\uc2dd\uacfc_\uc2dc\uc7a5_\ubc18\uc751_\ud655\uc778_\uc2dc\ubbac\ub808\uc774\uc158_2026_10_07",
+      "target": "docs_deployment_sim_\uacb0\ub860_\ud45c",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/deployment-sim.md",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_deployment_sim_\ubc30\ud3ec_\ubc29\uc2dd\uacfc_\uc2dc\uc7a5_\ubc18\uc751_\ud655\uc778_\uc2dc\ubbac\ub808\uc774\uc158_2026_10_07",
+      "target": "docs_deployment_sim_\ub9b4\uc2a4_\uc18c\uc7ac_\ud6c4\ubcf4_\uadf8\ub85c\uc2a4_\uc778\ubb3c",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/deployment-sim.md",
+      "source_location": "L55",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_deployment_sim_\ubc30\ud3ec_\ubc29\uc2dd\uacfc_\uc2dc\uc7a5_\ubc18\uc751_\ud655\uc778_\uc2dc\ubbac\ub808\uc774\uc158_2026_10_07",
+      "target": "docs_deployment_sim_\ud55c\uacc4",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/deployment-sim.md",
+      "source_location": "L61",
       "weight": 1.0
     },
     {
@@ -1506,6 +1556,94 @@
       "weight": 1.0
     },
     {
+      "source": "docs_success_criteria",
+      "target": "docs_success_criteria_\uc131\uacf5_\uc911\ub2e8_\uae30\uc900_\uacf5\uac1c_\uc804\uc5d0_\uc815\ud568",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/success-criteria.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_success_criteria_\uc131\uacf5_\uc911\ub2e8_\uae30\uc900_\uacf5\uac1c_\uc804\uc5d0_\uc815\ud568",
+      "target": "docs_success_criteria_1\ub2e8\uacc4_\uacf5\uac1c_\uc804_\uad00\ubb38",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/success-criteria.md",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_success_criteria_\uc131\uacf5_\uc911\ub2e8_\uae30\uc900_\uacf5\uac1c_\uc804\uc5d0_\uc815\ud568",
+      "target": "docs_success_criteria_2\ub2e8\uacc4_\ub178\ucd9c_\ud655\uc778",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/success-criteria.md",
+      "source_location": "L21",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_success_criteria_\uc131\uacf5_\uc911\ub2e8_\uae30\uc900_\uacf5\uac1c_\uc804\uc5d0_\uc815\ud568",
+      "target": "docs_success_criteria_3\ub2e8\uacc4_14\uc77c\uc9f8_\ud310\uc815",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/success-criteria.md",
+      "source_location": "L26",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_success_criteria_\uc131\uacf5_\uc911\ub2e8_\uae30\uc900_\uacf5\uac1c_\uc804\uc5d0_\uc815\ud568",
+      "target": "docs_success_criteria_\uc774_\uc22b\uc790\ub4e4\uc774_\ub9d0\ud574_\uc8fc\ub294_\uac83",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/success-criteria.md",
+      "source_location": "L41",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_success_criteria_\uc131\uacf5_\uc911\ub2e8_\uae30\uc900_\uacf5\uac1c_\uc804\uc5d0_\uc815\ud568",
+      "target": "docs_success_criteria_\uc815\ud558\uc9c0_\uc54a\uc740_\uac83",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/success-criteria.md",
+      "source_location": "L45",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_success_criteria_\uc131\uacf5_\uc911\ub2e8_\uae30\uc900_\uacf5\uac1c_\uc804\uc5d0_\uc815\ud568",
+      "target": "docs_success_criteria_\uc6a9\uc5b4_\ubd84\ubaa8\ub97c_\uace0\uc815\ud55c\ub2e4",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/success-criteria.md",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_success_criteria_\uc131\uacf5_\uc911\ub2e8_\uae30\uc900_\uacf5\uac1c_\uc804\uc5d0_\uc815\ud568",
+      "target": "docs_success_criteria_\ubcf4\uc815_\uae30\ub85d",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/success-criteria.md",
+      "source_location": "L50",
+      "weight": 1.0
+    },
+    {
       "source": "readme",
       "target": "readme_savvy_\uc800\uc7a5\ub428_\ucde8\ud5a5_\uc9c0\ub3c4",
       "relation": "contains",
@@ -1524,7 +1662,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L105",
+      "source_location": "L104",
       "weight": 1.0
     },
     {
@@ -1535,7 +1673,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L113",
+      "source_location": "L112",
       "weight": 1.0
     },
     {
@@ -1546,7 +1684,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L120",
+      "source_location": "L119",
       "weight": 1.0
     },
     {
@@ -1557,18 +1695,18 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L20",
+      "source_location": "L24",
       "weight": 1.0
     },
     {
       "source": "readme_savvy_\uc800\uc7a5\ub428_\ucde8\ud5a5_\uc9c0\ub3c4",
-      "target": "readme_\uc120\ud0dd_\ub3c4\uad6c",
+      "target": "readme_\uc774_\uc800\uc7a5\uc18c\uc5d0_\uc5c6\ub294_\uac83",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L49",
+      "source_location": "L53",
       "weight": 1.0
     },
     {
@@ -1579,7 +1717,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L64",
+      "source_location": "L57",
       "weight": 1.0
     },
     {
@@ -1590,7 +1728,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L74",
+      "source_location": "L67",
       "weight": 1.0
     },
     {
@@ -1601,7 +1739,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L80",
+      "source_location": "L73",
       "weight": 1.0
     },
     {
@@ -1612,7 +1750,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L84",
+      "source_location": "L77",
       "weight": 1.0
     },
     {
@@ -1634,7 +1772,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L92",
+      "source_location": "L91",
       "weight": 1.0
     },
     {
@@ -1645,7 +1783,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L22",
+      "source_location": "L26",
       "weight": 1.0
     },
     {
@@ -1656,7 +1794,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L31",
+      "source_location": "L35",
       "weight": 1.0
     },
     {
@@ -1667,7 +1805,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "README.md",
-      "source_location": "L35",
+      "source_location": "L39",
       "weight": 1.0
     },
     {
@@ -1683,13 +1821,24 @@
     },
     {
       "source": "tools_build_personal",
+      "target": "tools_build_personal_imgs",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/build-personal.js",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_build_personal",
       "target": "tools_build_personal_clip",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "tools/build-personal.js",
-      "source_location": "L14",
+      "source_location": "L17",
       "weight": 1.0
     },
     {
@@ -1700,7 +1849,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "tools/build-personal.js",
-      "source_location": "L21",
+      "source_location": "L24",
       "weight": 1.0
     },
     {
@@ -1727,13 +1876,24 @@
     },
     {
       "source": "tools_build_personal",
+      "target": "tools_build_personal_src_cachepath_out_my_saved_map_html_imgpath",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/build-personal.js",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_build_personal",
       "target": "tools_build_personal_html",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "tools/build-personal.js",
-      "source_location": "L32",
+      "source_location": "L43",
       "weight": 1.0
     },
     {
@@ -1744,18 +1904,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "tools/build-personal.js",
-      "source_location": "L33",
-      "weight": 1.0
-    },
-    {
-      "source": "tools_build_personal",
-      "target": "tools_build_personal_src_cachepath_out_my_saved_map_html",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "tools/build-personal.js",
-      "source_location": "L4",
+      "source_location": "L44",
       "weight": 1.0
     },
     {
@@ -1781,127 +1930,139 @@
       "weight": 1.0
     },
     {
-      "source": "tools_crawl",
-      "target": "tools_crawl_fs",
+      "source": "tools_build_rules",
+      "target": "tools_build_rules_sub",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": "tools/crawl.js",
-      "source_location": "L2",
+      "source_file": "tools/build-rules.js",
+      "source_location": "L15",
       "weight": 1.0
     },
     {
-      "source": "tools_crawl",
-      "target": "tools_crawl_ent",
+      "source": "tools_build_rules",
+      "target": "tools_build_rules_fs",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": "tools/crawl.js",
-      "source_location": "L8",
+      "source_file": "tools/build-rules.js",
+      "source_location": "L3",
       "weight": 1.0
     },
     {
-      "source": "\uc778\uc2a4\ud0c0\uc800\uc7a5\ub300\uc2dc\ubcf4\ub4dc_\uc2dc\ubbac\ub808\uc774\uc158_\ud53c\ub4dc\ubc31",
-      "target": "\uc778\uc2a4\ud0c0\uc800\uc7a5\ub300\uc2dc\ubcf4\ub4dc_\uc2dc\ubbac\ub808\uc774\uc158_\ud53c\ub4dc\ubc31_\uc778\uc2a4\ud0c0_\uc800\uc7a5\ub428_\ub300\uc2dc\ubcf4\ub4dc_\uc0c1\ud488\ud654_\uc2dc\ubbac\ub808\uc774\uc158_\ud53c\ub4dc\ubc31",
+      "source": "tools_build_rules",
+      "target": "tools_build_rules_path",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": "\uc778\uc2a4\ud0c0\uc800\uc7a5\ub300\uc2dc\ubcf4\ub4dc_\uc2dc\ubbac\ub808\uc774\uc158_\ud53c\ub4dc\ubc31.md",
-      "source_location": "L1",
+      "source_file": "tools/build-rules.js",
+      "source_location": "L3",
       "weight": 1.0
     },
     {
-      "source": "\uc778\uc2a4\ud0c0\uc800\uc7a5\ub300\uc2dc\ubcf4\ub4dc_\uc2dc\ubbac\ub808\uc774\uc158_\ud53c\ub4dc\ubc31_\uc778\uc2a4\ud0c0_\uc800\uc7a5\ub428_\ub300\uc2dc\ubcf4\ub4dc_\uc0c1\ud488\ud654_\uc2dc\ubbac\ub808\uc774\uc158_\ud53c\ub4dc\ubc31",
-      "target": "\uc778\uc2a4\ud0c0\uc800\uc7a5\ub300\uc2dc\ubcf4\ub4dc_\uc2dc\ubbac\ub808\uc774\uc158_\ud53c\ub4dc\ubc31_2_\uc778\ubb3c\ubcc4_\uc810\uc218",
+      "source": "tools_build_rules",
+      "target": "tools_build_rules_root",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": "\uc778\uc2a4\ud0c0\uc800\uc7a5\ub300\uc2dc\ubcf4\ub4dc_\uc2dc\ubbac\ub808\uc774\uc158_\ud53c\ub4dc\ubc31.md",
-      "source_location": "L16",
+      "source_file": "tools/build-rules.js",
+      "source_location": "L4",
       "weight": 1.0
     },
     {
-      "source": "\uc778\uc2a4\ud0c0\uc800\uc7a5\ub300\uc2dc\ubcf4\ub4dc_\uc2dc\ubbac\ub808\uc774\uc158_\ud53c\ub4dc\ubc31_\uc778\uc2a4\ud0c0_\uc800\uc7a5\ub428_\ub300\uc2dc\ubcf4\ub4dc_\uc0c1\ud488\ud654_\uc2dc\ubbac\ub808\uc774\uc158_\ud53c\ub4dc\ubc31",
-      "target": "\uc778\uc2a4\ud0c0\uc800\uc7a5\ub300\uc2dc\ubcf4\ub4dc_\uc2dc\ubbac\ub808\uc774\uc158_\ud53c\ub4dc\ubc31_3_\uc804\uc6d0_\ub610\ub294_\ub2e4\uc218\uac00_\ub3d9\uc758\ud55c_\uac83",
+      "source": "tools_build_rules",
+      "target": "tools_build_rules_base",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": "\uc778\uc2a4\ud0c0\uc800\uc7a5\ub300\uc2dc\ubcf4\ub4dc_\uc2dc\ubbac\ub808\uc774\uc158_\ud53c\ub4dc\ubc31.md",
-      "source_location": "L29",
-      "weight": 1.0
-    },
-    {
-      "source": "\uc778\uc2a4\ud0c0\uc800\uc7a5\ub300\uc2dc\ubcf4\ub4dc_\uc2dc\ubbac\ub808\uc774\uc158_\ud53c\ub4dc\ubc31_\uc778\uc2a4\ud0c0_\uc800\uc7a5\ub428_\ub300\uc2dc\ubcf4\ub4dc_\uc0c1\ud488\ud654_\uc2dc\ubbac\ub808\uc774\uc158_\ud53c\ub4dc\ubc31",
-      "target": "\uc778\uc2a4\ud0c0\uc800\uc7a5\ub300\uc2dc\ubcf4\ub4dc_\uc2dc\ubbac\ub808\uc774\uc158_\ud53c\ub4dc\ubc31_4_\uc7c1\uc810\ubcc4_\uacb0\ub860\uacfc_\uc18c\uc218_\uc758\uacac",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "\uc778\uc2a4\ud0c0\uc800\uc7a5\ub300\uc2dc\ubcf4\ub4dc_\uc2dc\ubbac\ub808\uc774\uc158_\ud53c\ub4dc\ubc31.md",
-      "source_location": "L38",
-      "weight": 1.0
-    },
-    {
-      "source": "\uc778\uc2a4\ud0c0\uc800\uc7a5\ub300\uc2dc\ubcf4\ub4dc_\uc2dc\ubbac\ub808\uc774\uc158_\ud53c\ub4dc\ubc31_\uc778\uc2a4\ud0c0_\uc800\uc7a5\ub428_\ub300\uc2dc\ubcf4\ub4dc_\uc0c1\ud488\ud654_\uc2dc\ubbac\ub808\uc774\uc158_\ud53c\ub4dc\ubc31",
-      "target": "\uc778\uc2a4\ud0c0\uc800\uc7a5\ub300\uc2dc\ubcf4\ub4dc_\uc2dc\ubbac\ub808\uc774\uc158_\ud53c\ub4dc\ubc31_1_\uacb0\ub860_\ud45c",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "\uc778\uc2a4\ud0c0\uc800\uc7a5\ub300\uc2dc\ubcf4\ub4dc_\uc2dc\ubbac\ub808\uc774\uc158_\ud53c\ub4dc\ubc31.md",
+      "source_file": "tools/build-rules.js",
       "source_location": "L5",
       "weight": 1.0
     },
     {
-      "source": "\uc778\uc2a4\ud0c0\uc800\uc7a5\ub300\uc2dc\ubcf4\ub4dc_\uc2dc\ubbac\ub808\uc774\uc158_\ud53c\ub4dc\ubc31_\uc778\uc2a4\ud0c0_\uc800\uc7a5\ub428_\ub300\uc2dc\ubcf4\ub4dc_\uc0c1\ud488\ud654_\uc2dc\ubbac\ub808\uc774\uc158_\ud53c\ub4dc\ubc31",
-      "target": "\uc778\uc2a4\ud0c0\uc800\uc7a5\ub300\uc2dc\ubcf4\ub4dc_\uc2dc\ubbac\ub808\uc774\uc158_\ud53c\ub4dc\ubc31_5_\uc2e4\ud589\uc548_\uc81c\uc548",
+      "source": "tools_build_rules",
+      "target": "tools_build_rules_rules",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": "\uc778\uc2a4\ud0c0\uc800\uc7a5\ub300\uc2dc\ubcf4\ub4dc_\uc2dc\ubbac\ub808\uc774\uc158_\ud53c\ub4dc\ubc31.md",
+      "source_file": "tools/build-rules.js",
       "source_location": "L55",
       "weight": 1.0
     },
     {
-      "source": "\uc778\uc2a4\ud0c0\uc800\uc7a5\ub300\uc2dc\ubcf4\ub4dc_\uc2dc\ubbac\ub808\uc774\uc158_\ud53c\ub4dc\ubc31_\uc778\uc2a4\ud0c0_\uc800\uc7a5\ub428_\ub300\uc2dc\ubcf4\ub4dc_\uc0c1\ud488\ud654_\uc2dc\ubbac\ub808\uc774\uc158_\ud53c\ub4dc\ubc31",
-      "target": "\uc778\uc2a4\ud0c0\uc800\uc7a5\ub300\uc2dc\ubcf4\ub4dc_\uc2dc\ubbac\ub808\uc774\uc158_\ud53c\ub4dc\ubc31_6_\uc778\ubb3c\ub4e4\uc774_\ud655\uc778\ud558\uace0_\uc2f6\ub2e4\uace0_\ud55c_\uac83",
+      "source": "tools_build_rules",
+      "target": "tools_build_rules_p",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": "\uc778\uc2a4\ud0c0\uc800\uc7a5\ub300\uc2dc\ubcf4\ub4dc_\uc2dc\ubbac\ub808\uc774\uc158_\ud53c\ub4dc\ubc31.md",
-      "source_location": "L64",
+      "source_file": "tools/build-rules.js",
+      "source_location": "L57",
       "weight": 1.0
     },
     {
-      "source": "\uc778\uc2a4\ud0c0\uc800\uc7a5\ub300\uc2dc\ubcf4\ub4dc_\uc2dc\ubbac\ub808\uc774\uc158_\ud53c\ub4dc\ubc31_\uc778\uc2a4\ud0c0_\uc800\uc7a5\ub428_\ub300\uc2dc\ubcf4\ub4dc_\uc0c1\ud488\ud654_\uc2dc\ubbac\ub808\uc774\uc158_\ud53c\ub4dc\ubc31",
-      "target": "\uc778\uc2a4\ud0c0\uc800\uc7a5\ub300\uc2dc\ubcf4\ub4dc_\uc2dc\ubbac\ub808\uc774\uc158_\ud53c\ub4dc\ubc31_7_\ud55c\uacc4",
+      "source": "tools_build_rules",
+      "target": "tools_build_rules_h",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": "\uc778\uc2a4\ud0c0\uc800\uc7a5\ub300\uc2dc\ubcf4\ub4dc_\uc2dc\ubbac\ub808\uc774\uc158_\ud53c\ub4dc\ubc31.md",
-      "source_location": "L72",
+      "source_file": "tools/build-rules.js",
+      "source_location": "L58",
       "weight": 1.0
     },
     {
-      "source": "\uc778\uc2a4\ud0c0\uc800\uc7a5\ub300\uc2dc\ubcf4\ub4dc_\uc2dc\ubbac\ub808\uc774\uc158_\ud53c\ub4dc\ubc31_\uc778\uc2a4\ud0c0_\uc800\uc7a5\ub428_\ub300\uc2dc\ubcf4\ub4dc_\uc0c1\ud488\ud654_\uc2dc\ubbac\ub808\uc774\uc158_\ud53c\ub4dc\ubc31",
-      "target": "\uc778\uc2a4\ud0c0\uc800\uc7a5\ub300\uc2dc\ubcf4\ub4dc_\uc2dc\ubbac\ub808\uc774\uc158_\ud53c\ub4dc\ubc31_8_\ud604\uc7ac_\uc0c1\ud0dc\uc640\uc758_\ub300\uc751\ud45c",
+      "source": "tools_build_rules",
+      "target": "tools_build_rules_m",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": "\uc778\uc2a4\ud0c0\uc800\uc7a5\ub300\uc2dc\ubcf4\ub4dc_\uc2dc\ubbac\ub808\uc774\uc158_\ud53c\ub4dc\ubc31.md",
-      "source_location": "L80",
+      "source_file": "tools/build-rules.js",
+      "source_location": "L59",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_build_rules",
+      "target": "tools_build_rules_top",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/build-rules.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_build_rules",
+      "target": "tools_build_rules_first",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tools/build-rules.js",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "tools_build_rules",
+      "target": "tools_build_rules_name",
+      "relation": "indirect_call",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "context": "argument",
+      "source_file": "tools/build-rules.js",
+      "source_location": "L63",
       "weight": 1.0
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "8c2b53f4b05d4175ec7245709c9fab23424194b4"
+  "built_at_commit": "18df561ba1a2833739b995dcad6720cdd9238190"
 }
