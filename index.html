@@ -282,7 +282,7 @@ function walk(o,title,out){
   if(!o||typeof o!=='object')return;
   if(Array.isArray(o.label_values)&&o.timestamp!=null){
     const lv={};o.label_values.forEach(l=>{if(l.href)lv.href=l.href;lv[fixEnc(l.label||'')]=fixEnc(l.value||'')});
-    if(lv.href)out.push({href:lv.href,ts:o.timestamp,title:lv['제목']||lv['Title']||'',text:lv['캡션']||lv['Caption']||''});
+    if(lv.href)out.push({href:lv.href,ts:o.timestamp,title:lv['제목']||lv['Title']||'',text:lv['캡션']||lv['Caption']||'',hintTopic:lv['추천주제']||'',hintTags:(lv['추천태그']||'').split('|').filter(Boolean)});
     return}
   if(o.href&&o.timestamp!=null){out.push({href:o.href,ts:o.timestamp,title:fixEnc(title||''),text:''});return}
   const t=o.title||o.value||title;
@@ -339,6 +339,7 @@ function add(list){
     if(!o){x.href=k+'/';store.set(k,x);continue}
     if(!o.ts&&x.ts)o.ts=x.ts;
     if(!o.title&&x.title)o.title=x.title;
+    if(!o.hintTopic&&x.hintTopic){o.hintTopic=x.hintTopic;o.hintTags=x.hintTags}
     if(!weak(x.text)&&x.text.length>o.text.length)o.text=x.text;
   }
 }
@@ -365,7 +366,10 @@ function classify(x){
   const s=(x.title+' '+x.text).toLowerCase();x.why='';
   if(ov[x.href])x.cat=ov[x.href];
   else{x.cat='미분류';for(const [c,ks] of RULES){const k=ks.find(k=>hit(s,k));if(k){x.cat=c;x.why=k;break}}}
+  // 규칙으로 주제를 못 정했고 이미지에서 읽은 추천 주제가 있으면 그것을 쓴다
+  if(!ov[x.href]&&x.cat==='미분류'&&x.hintTopic&&x.hintTopic!=='미분류'){x.cat=x.hintTopic;x.why='이미지에서 읽은 글'}
   const autos=[];for(const [c,ks] of (SUBS[x.cat]||[])){if(ks.some(k=>hit(s,k)))autos.push(c)}
+  for(const t of (x.hintTags||[])){if(!autos.includes(t)&&(SUBS[x.cat]||[]).some(r=>r[0]===t))autos.push(t)}
   const o=ovt[x.href];x.tags=o?o.filter(t=>(SUBS[x.cat]||[]).some(r=>r[0]===t)):autos; // 수동 태그는 그 주제 안에서만 유효
 }
 
