@@ -30,6 +30,7 @@ p{margin:0}
 .btn{font:inherit;font-weight:500;min-height:44px;padding:10px 16px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
 .btn.pri{background:var(--accent);color:var(--accent-ink);border-color:transparent}
 .btn.sm{min-height:36px;padding:6px 12px;font-size:13px}
+a.btn{display:inline-flex;align-items:center;text-decoration:none}
 .btn:focus-visible,select:focus-visible,input:focus-visible,textarea:focus-visible,.chip:focus-visible,summary:focus-visible,.tab:focus-visible,.cat:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 #drop{border:1.5px dashed var(--line);border-radius:12px;padding:14px 16px;display:grid;gap:10px;justify-items:start}
 #drop.over{border-color:var(--accent);background:var(--accent-soft)}
@@ -189,6 +190,14 @@ textarea{width:100%;min-height:240px;font:13px/1.5 ui-monospace,Menlo,Consolas,m
       <h2 id="exH">노션으로 옮기기</h2>
       <div class="row"><button class="btn" id="csv" type="button">CSV 내보내기</button></div>
       <p class="hint" style="margin-top:8px">노션에서 새 페이지 → 가져오기 → CSV로 데이터베이스가 만들어집니다. 폰 앱에서는 CSV 가져오기가 안 될 수 있어서 PC 웹에서 하는 편이 안전합니다. CSV에는 게시물 링크, 계정명, 캡션이 들어 있으니 남에게 보내지 마세요.</p>
+    </section>
+    <section aria-labelledby="fbH">
+      <h2 id="fbH">써 보셨다면</h2>
+      <div class="row">
+        <a class="btn" target="_blank" rel="noopener" href="https://github.com/kc9302/Savvy/issues/new?title=%5B%ED%94%BC%EB%93%9C%EB%B0%B1%5D%20%EB%8F%84%EC%9B%80%EC%9D%B4%20%EB%90%90%EC%96%B4%EC%9A%94&amp;body=%EB%8F%84%EC%9B%80%EC%9D%B4%20%EB%90%90%EC%96%B4%EC%9A%94.%0A%0A(%EC%9B%90%ED%95%98%EB%A9%B4%20%ED%95%9C%20%EC%A4%84%20%EB%8D%94%20%EC%A0%81%EC%96%B4%20%EC%A3%BC%EC%84%B8%EC%9A%94.%20%EC%A0%80%EC%9E%A5%20%EB%AA%A9%EB%A1%9D%EC%9D%B4%EB%82%98%20%EA%B3%84%EC%A0%95%EB%AA%85%EC%9D%80%20%EC%A0%81%EC%A7%80%20%EB%A7%88%EC%84%B8%EC%9A%94.)">도움이 됐어요</a>
+        <a class="btn" target="_blank" rel="noopener" href="https://github.com/kc9302/Savvy/issues/new?title=%5B%ED%94%BC%EB%93%9C%EB%B0%B1%5D%20%EB%A7%89%ED%98%94%EC%96%B4%EC%9A%94&amp;body=%EB%A7%89%ED%98%94%EC%96%B4%EC%9A%94.%0A%0A%EB%A7%89%ED%9E%8C%20%EB%8B%A8%EA%B3%84%3A%20%0A%EA%B8%B0%EA%B8%B0(%EC%98%88%3A%20%EC%95%84%EC%9D%B4%ED%8F%B0%2C%20%EA%B0%A4%EB%9F%AD%EC%8B%9C)%EC%99%80%20%EC%97%B4%EC%96%B4%20%EB%B3%B8%20%EC%95%B1(%EC%98%88%3A%20%EC%9D%B8%EC%8A%A4%ED%83%80%20%EC%95%B1%20%EC%95%88%2C%20%EC%82%AC%ED%8C%8C%EB%A6%AC%2C%20%ED%81%AC%EB%A1%AC)%3A%20%0A%0A(%EC%A0%80%EC%9E%A5%20%EB%AA%A9%EB%A1%9D%EC%9D%B4%EB%82%98%20%EA%B3%84%EC%A0%95%EB%AA%85%EC%9D%80%20%EC%A0%81%EC%A7%80%20%EB%A7%88%EC%84%B8%EC%9A%94.)">막혔어요</a>
+      </div>
+      <p class="hint" style="margin-top:8px">누르면 GitHub의 새 글 작성 화면이 열리고, 위 문구가 미리 채워집니다. 이 페이지는 아무것도 보내지 않습니다. 글은 직접 제출해야 올라가며, GitHub 계정이 필요합니다. 계정 없이 알리려면 릴스에 DM이나 댓글로 남겨 주세요. 저장 목록과 계정명은 적지 마세요.</p>
     </section>
     <details id="ruleBox">
       <summary>분류 규칙 고치기</summary>
