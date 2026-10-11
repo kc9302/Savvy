@@ -185,7 +185,7 @@ textarea{width:100%;min-height:240px;font:13px/1.5 ui-monospace,Menlo,Consolas,m
     <section aria-labelledby="cardH">
       <h2 id="cardH">내 유형 카드</h2>
       <div class="tcard" id="tcard"></div>
-      <div class="row" style="margin-top:10px"><button class="btn" id="saveCard" type="button">카드 이미지로 저장</button></div>
+      <div class="row" style="margin-top:10px"><button class="btn" id="saveCard" type="button">카드 이미지로 저장</button><button class="btn" id="copyCard" type="button">문구 복사</button></div>
       <p class="hint" style="margin-top:8px">카드에는 주제 이름과 비율만 들어갑니다. 계정명과 캡션은 들어가지 않습니다. 올릴지 말지는 직접 정하세요.</p>
     </section>
     <section aria-labelledby="exH">
@@ -485,6 +485,38 @@ function periodLabel(dated){
   const y=Math.floor(months/12),m=months%12;
   return {short:`전체 기간 (약 ${y}년${m?' '+m+'개월':''})`,range};
 }
+function cardFacts(top,total,cnt){
+  if(!top.length)return {ev:'',sp:''};
+  const [c,n]=top[0];
+  const sc={};items.forEach(x=>{if(x.cat===c)x.tags.forEach(t=>sc[t]=(sc[t]||0)+1)});
+  const st=Object.entries(sc).sort((a,b)=>b[1]-a[1])[0];
+  const ev=st?`${c} ${n.toLocaleString()}개 중 ${st[0]}가 ${st[1].toLocaleString()}개`:`${c} ${n.toLocaleString()}개`;
+  let sp='';
+  const dated=items.filter(x=>x.ts);
+  if(dated.length>=20){
+    const cut=Date.now()/1000-90*86400,rec=dated.filter(x=>x.ts>=cut);
+    if(rec.length>=5){
+      const rc={};rec.forEach(x=>rc[x.cat]=(rc[x.cat]||0)+1);
+      let bk=null,bd=0;
+      for(const k in rc){
+        if(k==='미분류'||rc[k]<3)continue;
+        const diff=rc[k]/rec.length-(cnt[k]||0)/total;
+        if(diff>bd){bd=diff;bk=k}
+      }
+      if(bk&&bd>0.05)sp=`최근 3개월엔 ${bk} ${Math.round(rc[bk]/rec.length*100)}%로 급증`;
+    }
+  }
+  if(!sp){
+    const cands=top.filter(e=>e[0]!==c&&e[1]>=3&&e[1]<n).sort((a,b)=>a[1]-b[1]);
+    if(cands.length)sp=`남몰래 모은 ${cands[0][0]} ${cands[0][1].toLocaleString()}개`;
+    else if(top.length>1){
+      if(top[1][1]>=n)sp=`${c}·${top[1][0]} 공동 1위`;
+      else if(n>=top[1][1]*2)sp=`2위 ${top[1][0]}의 ${Math.round(n/top[1][1])}배`;
+    }
+  }
+  return {ev,sp};
+}
+let cardShare='';
 function renderTaste(){
   if(!items.length){
     $('#sum').innerHTML='<div class="big">0<span>개 저장</span></div><p class="hint">내보내기 파일을 선택하면 여기에 요약이 보입니다.</p>';
@@ -502,8 +534,10 @@ function renderTaste(){
     +(top.length?`<p>${perShort?esc(perShort)+'에 ':''}가장 많이 모은 주제는 <b>${esc(top[0][0])}</b> ${top[0][1].toLocaleString()}개(${Math.round(top[0][1]/total*100)}%)${top.length>1?'이고, 이어서 '+top.slice(1).map(c=>'<b>'+esc(c[0])+'</b>').join(', ')+' 순입니다.':'입니다.'}</p>`:'');
   const all=ranked.concat(cnt['미분류']?[['미분류',cnt['미분류']]]:[]),mx=Math.max(1,...all.map(e=>e[1]));
   $('#cats').innerHTML=all.map(([c,n])=>`<button class="cat" type="button" data-c="${esc(c)}"><span class="nm">${esc(c)}</span><span class="b"><i style="width:${n/mx*100}%"></i></span><span class="n">${n.toLocaleString()}</span></button>`).join('');
-  const nm=typeName(top,total);
-  $('#tcard').innerHTML=`<div class="k">${perShort?esc(perShort)+' ':''}저장 ${total.toLocaleString()}개로 본 나는</div><div class="type">${esc(nm)}</div><div class="top">${top.map(([c,n])=>`<div><span>${esc(c)}</span><span>${Math.round(n/total*100)}%</span></div>`).join('')}</div><div class="one">${top.length?esc(top[0][0])+' 저장이 가장 많습니다.':''}</div>`;
+  const nm=typeName(top,total),fc=cardFacts(top,total,cnt);
+  cardShare=!top.length?'저장 목록이 비어 있습니다. - 저장됨 취향 지도'
+    :`${perShort?perShort+' ':''}저장 ${total.toLocaleString()}개로 본 나는 "${nm}". 1위 ${top[0][0]} ${Math.round(top[0][1]/total*100)}%${fc.ev?', '+fc.ev:''}${fc.sp?', '+fc.sp:''} - 저장됨 취향 지도`;
+  $('#tcard').innerHTML=`<div class="k">${perShort?esc(perShort)+' ':''}저장 ${total.toLocaleString()}개로 본 나는</div><div class="type">${esc(nm)}</div><div class="top">${top.map(([c,n])=>`<div><span>${esc(c)}</span><span>${Math.round(n/total*100)}%</span></div>`).join('')}</div><div class="one">${esc(fc.ev)}</div><div class="one">${esc(fc.sp)}</div>`;
   chart();
 }
 function chart(){
@@ -533,15 +567,19 @@ function cardImage(){
   g.fillStyle=col('--surface');g.fillRect(0,0,1080,1080);
   const cnt={};items.forEach(x=>cnt[x.cat]=(cnt[x.cat]||0)+1);
   const top=Object.entries(cnt).filter(e=>e[0]!=='미분류').sort((a,b)=>b[1]-a[1]).slice(0,3),total=items.length;
+  const fc=cardFacts(top,total,cnt);
   g.fillStyle=col('--mut');g.font='400 36px sans-serif';g.fillText(`저장 ${total.toLocaleString()}개로 본 나는`,80,150);
   g.fillStyle=col('--ink');g.font='400 96px sans-serif';
   const words=typeName(top,total).split(' ');let line='',y=300;
   for(const w of words){const t=line?line+' '+w:w;if(g.measureText(t).width>920&&line){g.fillText(line,80,y);y+=110;line=w}else line=t}
   g.fillText(line,80,y);
-  g.font='400 44px sans-serif';let yy=680;
+  g.font='400 44px sans-serif';let yy=660;
   for(const [n,v] of top){g.fillStyle=col('--ink');g.fillText(n,80,yy);g.textAlign='right';g.fillText(Math.round(v/total*100)+'%',1000,yy);g.textAlign='left';
-    g.fillStyle=col('--track');g.fillRect(80,yy+18,920,14);g.fillStyle=col('--accent');g.fillRect(80,yy+18,920*v/total,14);yy+=110}
-  g.fillStyle=col('--mut');g.font='400 30px sans-serif';g.fillText('저장됨 취향 지도',80,1000);
+    g.fillStyle=col('--track');g.fillRect(80,yy+18,920,14);g.fillStyle=col('--accent');g.fillRect(80,yy+18,920*v/total,14);yy+=100}
+  g.fillStyle=col('--mut');g.font='400 32px sans-serif';
+  if(fc.ev)g.fillText(fc.ev.slice(0,40),80,930);
+  if(fc.sp)g.fillText(fc.sp.slice(0,40),80,968);
+  g.font='400 30px sans-serif';g.fillText('저장됨 취향 지도',80,1010);
   return new Promise(r=>c.toBlob(b=>r(b),'image/png'));
 }
 
@@ -590,6 +628,11 @@ $('#list').onclick=e=>{
 $('#list').onchange=e=>{if(e.target.tagName!=='SELECT')return;ov[e.target.dataset.h]=e.target.value;delete ovt[e.target.dataset.h];save('ov',ov);save('ovt',ovt);render()};
 $('#csv').onclick=exportCSV;
 $('#saveCard').onclick=async()=>{const b=await cardImage();saveFile('my-taste-card.png',b,'image/png')};
+$('#copyCard').onclick=async()=>{
+  try{await navigator.clipboard.writeText(cardShare)}
+  catch(e){const ta=document.createElement('textarea');ta.value=cardShare;document.body.appendChild(ta);ta.select();try{document.execCommand('copy')}catch(_){} ta.remove()}
+  const b=$('#copyCard'),o=b.textContent;b.textContent='복사됨';setTimeout(()=>b.textContent=o,1500);
+};
 const ta=$('#rules');ta.value=rulesText;let t=0;
 ta.oninput=()=>{clearTimeout(t);t=setTimeout(()=>{rulesText=ta.value;try{localStorage.setItem('rules_v2',rulesText)}catch(e){}render()},300)};
 $('#rulesReset').onclick=()=>{rulesText=DEFAULT_RULES;ta.value=rulesText;try{localStorage.removeItem('rules_v2')}catch(e){}render()};
