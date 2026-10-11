@@ -90,7 +90,7 @@ a.go{color:var(--accent);font-weight:500;text-decoration:none;min-height:40px;di
 #chartInfo{font-size:13px;color:var(--mut);margin-top:6px;min-height:1.5em}
 .tcard{background:var(--surface);border:1px solid var(--line);border-radius:16px;aspect-ratio:1;max-width:340px;padding:22px;display:grid;align-content:space-between}
 .tcard .k{font-size:13px;color:var(--mut)}
-.tcard .type{font:400 30px/1.15 var(--display);text-wrap:balance}
+.tcard .type{font:400 30px/1.15 var(--display);white-space:nowrap}
 .tcard .top{display:grid;gap:4px}.tcard .top div{display:flex;justify-content:space-between;font-variant-numeric:tabular-nums}
 .tcard .one{font-size:13px;color:var(--mut)}
 .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
@@ -553,7 +553,8 @@ function chart(){
   const nd=items.length-src.length;
   $('#chartInfo').textContent='막대를 눌러 보세요.'+(nd?` 날짜를 모르는 ${nd.toLocaleString()}개는 제외했습니다.`:'');
 }
-function render(){parseRules();items.forEach(classify);$('#banner').hidden=items.length>0;renderFind();renderTaste()}
+function render(){parseRules();items.forEach(classify);$('#banner').hidden=items.length>0;renderFind();renderTaste();fitType()}
+function fitType(){const el=document.querySelector('#tcard .type');if(!el)return;let s=30;el.style.fontSize=s+'px';while(s>15&&el.scrollWidth>el.clientWidth){s--;el.style.fontSize=s+'px'}}
 
 /* ---------- 카드 이미지 ---------- */
 async function saveFile(filename,data,type){
