@@ -189,6 +189,11 @@ textarea{width:100%;min-height:240px;font:13px/1.5 ui-monospace,Menlo,Consolas,m
       <div class="row" style="margin-top:10px"><button class="btn" id="saveCard" type="button">카드 이미지로 저장</button><button class="btn" id="copyCard" type="button">문구 복사</button></div>
       <p class="hint" style="margin-top:8px">카드에는 주제 이름과 비율만 들어갑니다. 계정명과 캡션은 들어가지 않습니다. 올릴지 말지는 직접 정하세요.</p>
     </section>
+    <section aria-labelledby="aiH">
+      <h2 id="aiH">AI로 더 파보기</h2>
+      <div class="row"><button class="btn" id="aiCopy" type="button">정리본 복사</button></div>
+      <p class="hint" style="margin-top:8px">주제 통계와 대표 캡션만 담은 텍스트를 복사합니다. 챗GPT·제미나이·클로드에 붙여넣으면 이어서 분석해줍니다. 링크와 계정명은 빼지만 캡션이 들어가니 붙여넣기는 직접 정하세요.</p>
+    </section>
     <section aria-labelledby="exH">
       <h2 id="exH">노션으로 옮기기</h2>
       <div class="row"><button class="btn" id="csv" type="button">CSV 내보내기</button></div>
@@ -630,11 +635,33 @@ $('#list').onclick=e=>{
 $('#list').onchange=e=>{if(e.target.tagName!=='SELECT')return;ov[e.target.dataset.h]=e.target.value;delete ovt[e.target.dataset.h];save('ov',ov);save('ovt',ovt);render()};
 $('#csv').onclick=exportCSV;
 $('#saveCard').onclick=async()=>{const b=await cardImage();saveFile('my-taste-card.png',b,'image/png')};
-$('#copyCard').onclick=async()=>{
-  try{await navigator.clipboard.writeText(cardShare)}
-  catch(e){const ta=document.createElement('textarea');ta.value=cardShare;document.body.appendChild(ta);ta.select();try{document.execCommand('copy')}catch(_){} ta.remove()}
-  const b=$('#copyCard'),o=b.textContent;b.textContent='복사됨';setTimeout(()=>b.textContent=o,1500);
-};
+function buildAIBrief(){
+  if(!items.length)return '저장 목록이 비어 있습니다. - 저장됨 취향 지도';
+  const cnt={};items.forEach(x=>cnt[x.cat]=(cnt[x.cat]||0)+1);
+  const ranked=Object.entries(cnt).sort((a,b)=>b[1]-a[1]);
+  const dated=items.filter(x=>x.date).map(x=>x.date).sort(),per=periodLabel(dated);
+  const L=['[저장됨 취향 지도 정리본]'];
+  L.push(`- 기간: ${dated.length?per.range+' (날짜 아는 항목 '+dated.length.toLocaleString()+'개)':'날짜 정보 없음'} / 전체 ${items.length.toLocaleString()}개`);
+  L.push('- 주제별 개수: '+ranked.map(([c,n])=>`${c} ${n.toLocaleString()}`).join(', '));
+  for(const [c] of ranked){
+    if(c==='미분류')continue;
+    const sc={};items.forEach(x=>{if(x.cat===c)x.tags.forEach(t=>sc[t]=(sc[t]||0)+1)});
+    const sts=Object.entries(sc).sort((a,b)=>b[1]-a[1]).slice(0,3).map(e=>`${e[0]} ${e[1]}`).join(', ');
+    L.push(`[${c}]${sts?' 세부: '+sts:''}`);
+    items.filter(x=>x.cat===c).slice(0,2).forEach(x=>{const t=x.text.slice(0,150).replace(/\s+/g,' ').trim();if(t)L.push('  - '+t)});
+  }
+  const un=[];items.forEach(x=>{if(x.cat==='미분류'&&un.length<5){const t=x.text.slice(0,150).replace(/\s+/g,' ').trim();if(t)un.push(t)}});
+  if(un.length){L.push('[미분류 예시]');un.forEach(t=>L.push('  - '+t))}
+  L.push('위 목록을 바탕으로 내 취향을 분석해줘.');
+  return L.join('\n');
+}
+async function doCopy(t,b){
+  try{await navigator.clipboard.writeText(t)}
+  catch(e){const ta=document.createElement('textarea');ta.value=t;document.body.appendChild(ta);ta.select();try{document.execCommand('copy')}catch(_){} ta.remove()}
+  const o=b.textContent;b.textContent='복사됨';setTimeout(()=>b.textContent=o,1500);
+}
+$('#copyCard').onclick=()=>doCopy(cardShare,$('#copyCard'));
+$('#aiCopy').onclick=()=>doCopy(buildAIBrief(),$('#aiCopy'));
 const ta=$('#rules');ta.value=rulesText;let t=0;
 ta.oninput=()=>{clearTimeout(t);t=setTimeout(()=>{rulesText=ta.value;try{localStorage.setItem('rules_v2',rulesText)}catch(e){}render()},300)};
 $('#rulesReset').onclick=()=>{rulesText=DEFAULT_RULES;ta.value=rulesText;try{localStorage.removeItem('rules_v2')}catch(e){}render()};
