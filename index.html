@@ -470,6 +470,18 @@ function typeName(top,total){
   const suf=b?(share>0.3?b+' 겸업러':b+' 수집가'):'수집가';
   return pre+' '+suf;
 }
+function periodLabel(dated){
+  if(!dated.length)return null;
+  const a=new Date(dated[0]+'T00:00:00'),b=new Date(dated.at(-1)+'T00:00:00');
+  const days=Math.max(1,Math.round((b-a)/86400000)+1);
+  const months=(b.getFullYear()-a.getFullYear())*12+(b.getMonth()-a.getMonth())+1;
+  const range=`${a.getFullYear()}년 ${a.getMonth()+1}월 ~ ${b.getFullYear()}년 ${b.getMonth()+1}월`;
+  if(days<=45)return {short:'최근 한 달',range};
+  if(months<12)return {short:`최근 ${months}개월`,range};
+  if(a.getFullYear()===b.getFullYear())return {short:`${a.getFullYear()}년 한 해`,range};
+  const y=Math.floor(months/12),m=months%12;
+  return {short:`전체 기간 (약 ${y}년${m?' '+m+'개월':''})`,range};
+}
 function renderTaste(){
   if(!items.length){
     $('#sum').innerHTML='<div class="big">0<span>개 저장</span></div><p class="hint">내보내기 파일을 선택하면 여기에 요약이 보입니다.</p>';
@@ -480,14 +492,15 @@ function renderTaste(){
   const cnt={};items.forEach(x=>cnt[x.cat]=(cnt[x.cat]||0)+1);
   const ranked=Object.entries(cnt).filter(e=>e[0]!=='미분류').sort((a,b)=>b[1]-a[1]);
   const total=items.length,dated=items.filter(x=>x.date).map(x=>x.date).sort();
-  const top=ranked.slice(0,3);
+  const top=ranked.slice(0,3),per=periodLabel(dated);
+  const perShort=per?per.short:'';
   $('#sum').innerHTML=`<div class="big">${total.toLocaleString()}<span>개 저장</span></div>`
-    +(dated.length?`<p class="hint">${dated[0]} ~ ${dated.at(-1)}${dated.length<total?`, 날짜를 아는 항목 ${dated.length.toLocaleString()}개`:''}</p>`:'<p class="hint">저장 날짜 정보가 없는 파일입니다.</p>')
-    +(top.length?`<p>가장 많이 저장한 주제는 <b>${esc(top[0][0])}</b> ${top[0][1].toLocaleString()}개(${Math.round(top[0][1]/total*100)}%)${top.length>1?'이고, 이어서 '+top.slice(1).map(c=>'<b>'+esc(c[0])+'</b>').join(', ')+' 순입니다.':'입니다.'}</p>`:'');
+    +(dated.length?`<p class="hint">${per.range}${dated.length<total?`, 날짜를 아는 항목 ${dated.length.toLocaleString()}개`:''}</p>`:'<p class="hint">저장 날짜 정보가 없는 파일입니다.</p>')
+    +(top.length?`<p>${perShort?esc(perShort)+'에 ':''}가장 많이 모은 주제는 <b>${esc(top[0][0])}</b> ${top[0][1].toLocaleString()}개(${Math.round(top[0][1]/total*100)}%)${top.length>1?'이고, 이어서 '+top.slice(1).map(c=>'<b>'+esc(c[0])+'</b>').join(', ')+' 순입니다.':'입니다.'}</p>`:'');
   const all=ranked.concat(cnt['미분류']?[['미분류',cnt['미분류']]]:[]),mx=Math.max(1,...all.map(e=>e[1]));
   $('#cats').innerHTML=all.map(([c,n])=>`<button class="cat" type="button" data-c="${esc(c)}"><span class="nm">${esc(c)}</span><span class="b"><i style="width:${n/mx*100}%"></i></span><span class="n">${n.toLocaleString()}</span></button>`).join('');
   const nm=typeName(top,total);
-  $('#tcard').innerHTML=`<div class="k">저장 ${total.toLocaleString()}개로 본 나는</div><div class="type">${esc(nm)}</div><div class="top">${top.map(([c,n])=>`<div><span>${esc(c)}</span><span>${Math.round(n/total*100)}%</span></div>`).join('')}</div><div class="one">${top.length?esc(top[0][0])+' 저장이 가장 많습니다.':''}</div>`;
+  $('#tcard').innerHTML=`<div class="k">${perShort?esc(perShort)+' ':''}저장 ${total.toLocaleString()}개로 본 나는</div><div class="type">${esc(nm)}</div><div class="top">${top.map(([c,n])=>`<div><span>${esc(c)}</span><span>${Math.round(n/total*100)}%</span></div>`).join('')}</div><div class="one">${top.length?esc(top[0][0])+' 저장이 가장 많습니다.':''}</div>`;
   chart();
 }
 function chart(){
