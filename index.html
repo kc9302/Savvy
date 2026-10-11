@@ -359,6 +359,9 @@ function norm(x){
   x.title=x.title||'';x.text=(x.text||'').replace(/\s+/g,' ').trim();
   const m=x.text.match(/^(?:Photo|Video|Reel)?\s*(?:by|shared by)\s+(.+?)\s+on\s+([A-Z][a-z]+ \d{1,2}, \d{4})/);
   if(m){x.title=x.title||m[1];const t=Date.parse(m[2]);if(t)x.ts=t/1000;x.text=x.text.slice(m[0].length).replace(/^[.\s]+/,'')}
+  // 이미지 설명문 속 인용 글("text that says '...'")은 실제 본문이므로 살린다
+  const qm=x.text.match(/text that says\s+['"](.+)['"]\.?\s*$/i);
+  if(qm)x.text=qm[1];
   return x;
 }
 function add(list){
@@ -409,7 +412,7 @@ function classify(x){
   // 다른 계정을 태그한 문구와 이미지 설명 문구는 글의 주제가 아니므로 키워드 맞추기에서 뺀다
   const s=(x.title+' '+x.text.replace(/tagging [^.]*(\.|$)/gi,' ').replace(/may be (an? )?(image|illustration|graphic|text)[^.]*\./gi,' ').replace(/@[a-z0-9._]+/gi,' ')).toLowerCase();x.why='';
   if(ov[x.href])x.cat=ov[x.href];
-  else{x.cat='미분류';if(!thin(x.text))pickTopic(x,s)}
+  else{x.cat='미분류';if(!thin(x.text)||!thin(x.title))pickTopic(x,s)}
   // 규칙으로 주제를 못 정했고 이미지에서 읽은 추천 주제가 있으면 그것을 쓴다
   if(!ov[x.href]&&x.cat==='미분류'&&x.hintTopic&&x.hintTopic!=='미분류'){x.cat=x.hintTopic;x.why='이미지에서 읽은 글'}
   const autos=[];for(const [c,ks] of (SUBS[x.cat]||[])){if(ks.some(k=>hit(s,k.replace(/^~/,''))))autos.push(c)}
