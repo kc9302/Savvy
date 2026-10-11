@@ -126,7 +126,7 @@ textarea{width:100%;min-height:240px;font:13px/1.5 ui-monospace,Menlo,Consolas,m
     <h2 id="loadH" style="margin:0">내 저장 목록 불러오기</h2>
     <input id="file" type="file" multiple hidden accept=".zip,.json,.html,.htm,application/zip,application/json,text/html">
     <button class="btn pri" id="pick" type="button">내보내기 파일 선택</button>
-    <p class="hint">인스타에서 받은 ZIP을 그대로 고르면 됩니다. 압축을 풀 필요가 없습니다. 파일 이름은 instagram-계정명-날짜-….zip 처럼 생겼습니다. 파일이 준비되기까지 시간이 걸리니, 요청해 둔 동안 이 주소를 북마크해 두세요. 아래 화면은 예시이니 먼저 둘러보세요.</p>
+    <p class="hint">인스타에서 받은 ZIP을 그대로 고르면 됩니다. 압축을 풀 필요가 없습니다. 파일 이름은 instagram-계정명-날짜-….zip 처럼 생겼습니다. 파일이 준비되기까지 시간이 걸리니, 요청해 둔 동안 이 주소를 북마크해 두세요.</p>
     <p class="hint" id="inapp" hidden>인스타 앱 안에서 연 것 같습니다. 이 화면에서는 파일 선택이 안 될 수 있으니, 오른쪽 위 메뉴(⋯)에서 "외부 브라우저로 열기"를 눌러 크롬이나 사파리에서 여세요.</p>
     <details>
       <summary>파일 받는 방법 (폰)</summary>
@@ -153,7 +153,7 @@ textarea{width:100%;min-height:240px;font:13px/1.5 ui-monospace,Menlo,Consolas,m
   </section>
 
   <div id="msg" role="status" aria-live="polite"></div>
-  <div id="banner">지금 보이는 것은 예시 데이터입니다. 내 파일을 고르면 내 저장 목록으로 바뀝니다.</div>
+  <div id="banner" hidden>내 파일을 고르면 내 저장 목록으로 바뀝니다.</div>
 
   <div class="tabs" role="tablist">
     <button class="tab" id="tabFind" role="tab" aria-selected="true" aria-controls="paneFind" type="button">찾기</button>
@@ -297,7 +297,7 @@ IT/개발: 코딩,개발자,개발,배포,웹사이트,프로그래밍,~알고�
 여행 > 해외: 일본,오사카,도쿄,유럽,발리,방콕,대만,파리,italy,europe,japan
 심리/마음 > 위로·번아웃: 위로,지쳐,번아웃,힘들,쉬어
 심리/마음 > 자존감·불안: 자존감,자신감,불안,예민,멘탈`;
-const store=new Map();let items=[],filter=null,sub=null,q='',shown=60,mode='m',isSample=true,RULES=[],SUBS={},NONE='태그 없음';
+const store=new Map();let items=[],filter=null,sub=null,q='',shown=60,mode='m',isSample=false,RULES=[],SUBS={},NONE='태그 없음';
 let ov={},ovt={};try{ov=JSON.parse(localStorage.getItem('ov')||'{}');ovt=JSON.parse(localStorage.getItem('ovt')||'{}')}catch(e){}
 let rulesText=DEFAULT_RULES;try{rulesText=localStorage.getItem('rules_v2')||DEFAULT_RULES}catch(e){}
 const pad=n=>String(n).padStart(2,'0');
@@ -421,6 +421,14 @@ function classify(x){
 const qHit=x=>!q||(x.text+' '+x.title).toLowerCase().includes(q);
 function visible(){return items.filter(x=>(!filter||x.cat===filter)&&(!sub||(sub===NONE?!x.tags.length:x.tags.includes(sub)))&&qHit(x))}
 function renderFind(){
+  if(!items.length){
+    $('#topChips').innerHTML='';
+    $('#subChips').hidden=true;$('#subChips').innerHTML='';
+    $('#lead').textContent='아직 불러온 저장 목록이 없습니다.';
+    $('#leadHint').textContent='';
+    $('#list').innerHTML='<p class="hint">위에서 내보내기 파일(ZIP 권장)을 선택하면 여기에 내 저장 목록이 보입니다.</p>';
+    $('#more').hidden=true;return;
+  }
   const cnt={},found=items.filter(qHit);found.forEach(x=>cnt[x.cat]=(cnt[x.cat]||0)+1);
   const names=RULES.map(r=>r[0]).concat('미분류').filter(c=>cnt[c]||c===filter).sort((a,b)=>(a==='미분류')-(b==='미분류')||(cnt[b]||0)-(cnt[a]||0));
   $('#topChips').innerHTML=`<button class="chip" type="button" data-c="" aria-pressed="${!filter}">전체 <b>${found.length.toLocaleString()}</b></button>`
@@ -446,7 +454,7 @@ function list(){
     return `<article class="item" data-h="${esc(x.href)}"><div class="meta"><span>${x.date||'날짜 모름'}</span>${x.title?`<span>@${esc(x.title)}</span>`:''}</div>`
     +`<p class="cap">${esc(x.text)||'<span class="hint">캡션 없음</span>'}</p>`
     +(subs.length?`<div class="tags">${x.tags.map(t=>`<button class="tag on" type="button" data-t="${esc(t)}" title="누르면 뗍니다">${esc(t)} ✕</button>`).join('')}${rest.length?`<button class="tag add" type="button" data-add="1">+ 태그</button><span class="tags" data-pool hidden>${rest.map(t=>`<button class="tag" type="button" data-t="${esc(t)}">${esc(t)}</button>`).join('')}</span>`:''}</div>`:'')
-    +`<div class="act"><select data-h="${esc(x.href)}" aria-label="주제">${names.map(c=>`<option${c===x.cat?' selected':''}>${esc(c)}</option>`).join('')}</select>${isSample?'<span class="hint">예시</span>':`<a class="go" href="${esc(x.href)}" target="_blank" rel="noopener">인스타에서 열기</a>`}</div>`
+    +`<div class="act"><select data-h="${esc(x.href)}" aria-label="주제">${names.map(c=>`<option${c===x.cat?' selected':''}>${esc(c)}</option>`).join('')}</select><a class="go" href="${esc(x.href)}" target="_blank" rel="noopener">인스타에서 열기</a></div>`
     +(x.why?`<div class="why">"${esc(x.why)}" 때문에 ${esc(x.cat)}으로 분류됨</div>`:'')+`</article>`}).join('')
     +(v.length?'':'<p class="hint">조건에 맞는 항목이 없습니다.</p>');
   $('#more').hidden=v.length<=shown;$('#more').textContent=`더 보기 (${Math.min(60,v.length-shown)}개)`;
@@ -463,6 +471,12 @@ function typeName(top,total){
   return pre+' '+suf;
 }
 function renderTaste(){
+  if(!items.length){
+    $('#sum').innerHTML='<div class="big">0<span>개 저장</span></div><p class="hint">내보내기 파일을 선택하면 여기에 요약이 보입니다.</p>';
+    $('#cats').innerHTML='<p class="hint">아직 분류할 항목이 없습니다.</p>';
+    $('#tcard').innerHTML='<div class="k">저장 목록을 불러오면</div><div class="type">내 유형이 여기에</div><div class="one"></div>';
+    chart();return;
+  }
   const cnt={};items.forEach(x=>cnt[x.cat]=(cnt[x.cat]||0)+1);
   const ranked=Object.entries(cnt).filter(e=>e[0]!=='미분류').sort((a,b)=>b[1]-a[1]);
   const total=items.length,dated=items.filter(x=>x.date).map(x=>x.date).sort();
@@ -480,7 +494,7 @@ function chart(){
   const src=items.filter(x=>x.date),by={};src.forEach(x=>{const k=mode==='m'?x.date.slice(0,7):x.date;by[k]=(by[k]||0)+1});
   const keys=Object.keys(by).sort();bars=[];
   $('#mM').setAttribute('aria-pressed',mode==='m');$('#mD').setAttribute('aria-pressed',mode==='d');
-  if(!keys.length){$('#chart').innerHTML='';$('#r0').textContent='';$('#r1').textContent='';$('#chartInfo').textContent='날짜를 아는 항목이 없어서 그래프를 그릴 수 없습니다.';return}
+  if(!keys.length){$('#chart').innerHTML='';$('#r0').textContent='';$('#r1').textContent='';$('#chartInfo').textContent=!items.length?'내보내기 파일을 선택하면 여기에 그래프가 그려집니다.':'날짜를 아는 항목이 없어서 그래프를 그릴 수 없습니다.';return}
   if(mode==='m'){let y=+keys[0].slice(0,4),m=+keys[0].slice(5);const ey=+keys.at(-1).slice(0,4),em=+keys.at(-1).slice(5);while(y<ey||(y===ey&&m<=em)){const k=y+'-'+pad(m);bars.push([k,by[k]||0]);if(++m>12){m=1;y++}}}
   else{const end=new Date(keys.at(-1)+'T00:00:00');for(let i=179;i>=0;i--){const d=new Date(end);d.setDate(d.getDate()-i);const k=dstr(d.getTime()/1000);bars.push([k,by[k]||0])}}
   const mx=Math.max(1,...bars.map(b=>b[1]));
@@ -489,7 +503,7 @@ function chart(){
   const nd=items.length-src.length;
   $('#chartInfo').textContent='막대를 눌러 보세요.'+(nd?` 날짜를 모르는 ${nd.toLocaleString()}개는 제외했습니다.`:'');
 }
-function render(){parseRules();items.forEach(classify);$('#banner').hidden=!isSample;renderFind();renderTaste()}
+function render(){parseRules();items.forEach(classify);$('#banner').hidden=items.length>0;renderFind();renderTaste()}
 
 /* ---------- 카드 이미지 ---------- */
 async function saveFile(filename,data,type){
@@ -516,8 +530,7 @@ function cardImage(){
 }
 
 /* ---------- 불러오기 ---------- */
-const SAMPLE=[[3,'trip.daily','제주 3박 4일 코스 정리 항공권 호텔 후기'],[5,'recipe_home','10분 만에 만드는 간장 계란밥 레시피'],[6,'dev.notes','개발자 취업 포트폴리오 이력서 피드백'],[9,'swim.coach','접영 킥 타이밍 수영 드릴'],[12,'cafe.seoul','성수 카페 디저트 케이크 신메뉴'],[15,'quote.daily','행복은 강도가 아니라 빈도다 인생 명언'],[18,'ai.workflow','chatgpt 자동화 노션 생산성 팁'],[21,'home.deco','작은 방 인테리어 수납 가구 배치'],[25,'fit.home','거북목에 좋은 목 스트레칭 15분 루틴'],[30,'book.night','이번 달 읽은 책 추천 에세이 독서'],[34,'mini.finance','연말정산 소득공제 월세 정리 재테크'],[38,'indie.playlist','퇴근길 플레이리스트 발라드 명곡'],[41,'seoul.walk','한강 벚꽃 산책 스팟 서울 나들이'],[47,'couple.log','커플 데이트 코스 연애 소통법'],[52,'pet.diary','강아지 산책 고양이 간식 반려'],[58,'fashion.fit','봄 코디 바지 핏 스타일링 ootd'],[63,'biz.insight','사업 마케팅 매출 인사이트 브랜딩'],[70,'kitchen.log','집밥 덮밥 파스타 에어프라이어 요리'],[78,'food.map','노포 맛집 칼국수 국밥 영업시간'],[85,'trip.japan','오사카 일본 여행 항공 호텔'],[92,'swim.coach','수영 평영 자유형 호흡 교정'],[101,'movie.talk','넷플릭스 드라마 영화 추천 정리'],[118,'art.studio','수채화 일러스트 그림 전시 디자인'],[130,'dev.notes','python 코딩 개발 자동화 github'],[150,'quote.daily','위로가 필요한 날 읽는 글귀'],[175,'fit.home','허리 통증 잡는 코어 운동 필라테스'],[210,'skin.log','피부 스킨케어 메이크업 뷰티'],[250,'home.deco','플랜테리어 식물 인테리어'],[290,'trip.daily','캠핑 여행 호텔 관광'],[330,'recipe_home','베이킹 빵 디저트 케이크'],[340,'fit.home','골반 교정 스트레칭 고관절 폼롤러'],[350,'run.club','러닝 10km 마라톤 준비 운동']];
-function loadSample(){store.clear();const base=Date.UTC(2026,9,1)/1000;add(SAMPLE.map(([d,u,t],i)=>({href:'https://www.instagram.com/p/EXAMPLE'+i+'/',ts:base-d*86400,title:u,text:t})));isSample=true;rebuild()}
+function loadEmpty(){store.clear();isSample=false;rebuild()}
 async function load(files){
   const msg=$('#msg');msg.textContent='읽는 중입니다...';
   try{
@@ -530,7 +543,7 @@ async function load(files){
 }
 function exportCSV(){
   const qt=s=>'"'+String(s).replace(/"/g,'""')+'"';
-  const rows=items.map(x=>[x.date,x.title,x.cat,x.tags.join(' / '),x.text.slice(0,300),isSample?'':x.href].map(qt).join(','));
+  const rows=items.map(x=>[x.date,x.title,x.cat,x.tags.join(' / '),x.text.slice(0,300),x.href].map(qt).join(','));
   saveFile('saved_posts_taste.csv','\ufeff날짜,계정,주제,세부,캡션,링크\n'+rows.join('\n'),'text/csv');
 }
 
@@ -566,8 +579,8 @@ ta.oninput=()=>{clearTimeout(t);t=setTimeout(()=>{rulesText=ta.value;try{localSt
 $('#rulesReset').onclick=()=>{rulesText=DEFAULT_RULES;ta.value=rulesText;try{localStorage.removeItem('rules_v2')}catch(e){}render()};
 
 const pre=document.getElementById('preload');
-if(pre){try{add(parseJSON(pre.textContent));isSample=false;rebuild();$('#msg').textContent=store.size.toLocaleString()+'개가 미리 담겨 있습니다. 다른 파일을 고르면 그 파일로 바뀝니다.'}catch(e){loadSample()}}
-else loadSample();
+if(pre){try{add(parseJSON(pre.textContent));isSample=false;rebuild();$('#msg').textContent=store.size.toLocaleString()+'개가 미리 담겨 있습니다. 다른 파일을 고르면 그 파일로 바뀝니다.'}catch(e){loadEmpty()}}
+else loadEmpty();
 if(/Instagram|FBAN|FBAV/.test(navigator.userAgent))$('#inapp').hidden=false;
 render();
 let tab='find';try{tab=localStorage.getItem('tab')||'find'}catch(e){}showTab(tab);
