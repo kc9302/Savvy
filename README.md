@@ -120,4 +120,4 @@ node tools/build-personal.js <saved_posts.json> [crawl_cache.json] [my-saved-map
 
 ## 라이선스
 
-아직 정하지 않았습니다.
+MIT (LICENSE 파일). 단, 이 도구가 읽는 인스타그램 저장 목록 속 캡션·이미지는 각 작성자의 저작물이며 라이선스 대상이 아닙니다. 개인 정리 용도로만 쓰세요.
