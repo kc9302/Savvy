@@ -296,8 +296,8 @@ IT/개발: 코딩,개발자,개발,배포,웹사이트,프로그래밍,~알고�
 여행 > 국내: 제주,강릉,부산,속초,경주,전주,여수,캠핑,한옥
 여행 > 해외: 일본,오사카,도쿄,유럽,발리,방콕,대만,파리,italy,europe,japan
 심리/마음 > 위로·번아웃: 위로,지쳐,번아웃,힘들,쉬어
-심리/마음 > 자존감·불안: 자존감,자신감,불안,예민,멘탈``;
-st store=new Map();let items=[],filter=null,sub=null,q='',shown=60,mode='m',isSample=false,RULES=[],SUBS={},NONE='태그 없음';
+심리/마음 > 자존감·불안: 자존감,자신감,불안,예민,멘탈`;
+let store=new Map();let items=[],filter=null,sub=null,q='',shown=60,mode='m',isSample=false,RULES=[],SUBS={},NONE='태그 없음';
 let ov={},ovt={};try{ov=JSON.parse(localStorage.getItem('ov')||'{}');ovt=JSON.parse(localStorage.getItem('ovt')||'{}')}catch(e){}
 let rulesText=DEFAULT_RULES;try{rulesText=localStorage.getItem('rules_v2')||DEFAULT_RULES}catch(e){}
 const pad=n=>String(n).padStart(2,'0');
