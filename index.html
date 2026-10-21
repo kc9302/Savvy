@@ -605,8 +605,8 @@ function exportCSV(){
 /* ---------- 이벤트 ---------- */
 function showTab(t){const f=t==='find';$('#tabFind').setAttribute('aria-selected',f);$('#tabTaste').setAttribute('aria-selected',!f);$('#paneFind').hidden=!f;$('#paneTaste').hidden=f;if(!f)requestAnimationFrame(fitType);try{localStorage.setItem('tab',t)}catch(e){}}
 $('#tabFind').onclick=()=>showTab('find');$('#tabTaste').onclick=()=>showTab('taste');
-$('#pick').onclick=()=>$('#file').click();
-$('#file').onchange=e=>{const fs=[...e.target.files];e.target.value='';if(fs.length)load(fs)};
+$('#pick').onclick=()=>{const b=$('#pick');b.textContent='파일 선택 중...';b.disabled=true;$('#file').click()};
+$('#file').onchange=e=>{const b=$('#pick');b.textContent='내보내기 파일 선택';b.disabled=false;const fs=[...e.target.files];e.target.value='';if(fs.length)load(fs)};
 const drop=$('#drop');
 drop.ondragover=e=>{e.preventDefault();drop.classList.add('over')};drop.ondragleave=()=>drop.classList.remove('over');
 drop.ondrop=e=>{e.preventDefault();drop.classList.remove('over');if(e.dataTransfer.files.length)load([...e.dataTransfer.files])};
