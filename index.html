@@ -388,7 +388,6 @@ function rebuild(){items=[...store.values()];if(items.length&&items.every(x=>x.t
 
 /* ---------- 분류 ---------- */
 function parseRules(){
-  RULES=[];SUBS={};
   for(const l of rulesText.split('\n')){
     const i=l.indexOf(':');if(i<0)continue;
     const name=l.slice(0,i).trim(),ks=l.slice(i+1).split(',').map(s=>s.trim().toLowerCase()).filter(Boolean);
