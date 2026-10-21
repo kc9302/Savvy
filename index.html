@@ -319,7 +319,7 @@ const fixEnc=s=>{try{return decodeURIComponent(escape(s))}catch(e){return s}}; /
 function walk(o,title,out){
   if(!o||typeof o!=='object')return;
   if(Array.isArray(o.label_values)&&o.timestamp!=null){
-    const lv={};o.label_values.forEach(l=>{if(l&&l.href){lv.href=l.href;const k=fixEnc(l.label);if(k)lv[k]=(lv[k]||'')+(fixEnc(l.value)||'')}});
+    const lv={};o.label_values.forEach(l=>{if(!l)return;const k=fixEnc(l.label);if(l.href)lv.href=l.href;if(k)lv[k]=(lv[k]||'')+(fixEnc(l.value)||'')});
     if(lv.href)out.push({href:lv.href,ts:o.timestamp,title:fixEnc(lv['제목']||lv['Title']||o.fbid||''),text:fixEnc(lv['캡션']||lv['Caption']||lv['ìº¡ì']||lv['ì ëª©']||''),hintTopic:fixEnc(lv['추천주제']||''),hintTags:(lv['추천태그']||[]).map(fixEnc).filter(Boolean)});
     return}
   if(o.href&&o.timestamp!=null){out.push({href:o.href,ts:o.timestamp,title:fixEnc(o.title||o.value||title),text:fixEnc(o.text||'')});return}
