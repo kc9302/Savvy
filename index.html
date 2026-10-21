@@ -129,7 +129,17 @@ textarea{width:100%;min-height:240px;font:13px/1.5 ui-monospace,Menlo,Consolas,m
     <button class="btn pri" id="pick" type="button">내보내기 파일 선택</button>
     <p class="hint">인스타에서 받은 ZIP을 그대로 선택하면 됩니다. 압축을 풀 필요가 없습니다. 파일 이름은 instagram-계정명-날짜-….zip 처럼 생겼습니다. 파일이 준비되기까지 시간이 걸리니, 요청해 둔 동안 이 주소를 북마크해 두세요.</p>
         <p class="hint" id="inapp" hidden>인스타 앱 안에서 연 것 같습니다. 이 화면에서는 파일 선택이 안 될 수 있으니, 오른쪽 위 메뉴(⋯)에서 "외부 브라우저로 열기"를 눌러 크롬이나 사파리에서 여세요.</p>
-        <details>
+            <details>
+              <summary>⭐ 어떤 파일을 골라야 하나요? (중요)</summary>
+              <ul class="hint" style="padding-left:18px">
+                <li>인스타에서 받는 <b>ZIP 파일 하나를 그대로</b> 고르면 됩니다. 압축을 풀거나 폴더를 선택할 필요 없습니다.</li>
+                <li>ZIP 안에는 <b>saved_posts.json</b> 파일이 들어 있습니다. 이 파일이 분석 대상입니다.</li>
+                <li>경로 예: <code>instagram-계정명-날짜.zip</code> → 안에 <code>saved_posts.json</code> (또는 <code>logged_information/saved/saved_posts.json</code>)</li>
+                <li>ZIP 안에 여러 JSON 파일이 있어도 괜찮습니다. 앱이 <code>saved_posts.json</code>을 자동으로 찾아 분석합니다.</li>
+                <li>파일 이름이 <code>instagram-계정명-날짜-…zip</code> 이 아닌 경우도 있습니다. "instagram"이 포함된 ZIP을 고르면 됩니다.</li>
+              </ul>
+            </details>
+            <details>
           <summary>파일 받는 방법 (웹)</summary>
           <ol class="hint" style="font-size:15px;line-height:1.8">
             <li>인스타 웹사이트(<a href="https://www.instagram.com" target="_blank" rel="noopener" style="color:var(--accent)">instagram.com</a>)에 접속해 계정 프로필로 이동합니다.</li>
