@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>화면 가독성 피드백 설문</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', system-ui, sans-serif; background: #F5F6F8; color: #15171C; padding: 20px; max-width: 800px; margin: 0 auto; }
+    h1 { font-size: 24px; margin-bottom: 8px; }
+    p { margin-bottom: 16px; line-height: 1.6; }
+    .card { background: #FFFFFF; border: 1px solid #E2E5EB; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+    .card-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    @media (max-width: 600px) { .card-grid { grid-template-columns: 1fr; } }
+    .card-label { font-size: 13px; color: #5F6676; margin-bottom: 8px; font-weight: 500; }
+    .card-name { font-size: 18px; font-weight: 600; margin-bottom: 4px; }
+    .card-sub { font-size: 14px; color: #5F6676; }
+    .question { margin-bottom: 20px; }
+    .question-text { font-size: 16px; font-weight: 500; margin-bottom: 12px; }
+    .options { display: grid; gap: 10px; }
+    .option { display: flex; align-items: center; gap: 10px; padding: 12px; background: #F5F6F8; border-radius: 8px; cursor: pointer; border: 2px solid transparent; }
+    .option:hover { border-color: #D6285B; background: #FCE6EE; }
+    .option.selected { border-color: #D6285B; background: #FFF0F3; }
+    input[type="radio"] { accent-color: #D6285B; }
+    .note { font-size: 12px; color: #5F6676; margin-top: 8px; }
+    .submit-btn { background: #D6285B; color: white; border: none; padding: 14px 24px; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; width: 100%; }
+    .submit-btn:hover { background: #B81A4A; }
+    .result { display: none; background: #EFF6EE; border: 1px solid #BBF7D0; border-radius: 8px; padding: 16px; margin-top: 20px; text-align: center; }
+    .result.show { display: block; }
+    .result h3 { color: #166534; margin-bottom: 8px; }
+    .result p { color: #166534; font-size: 16px; }
+  </style>
+</head>
+<body>
+  <h1>화면 가독성 피드백 설문</h1>
+  <p>다음 두 가지 버전의 화면을 보고 피드백을 부탁드립니다. 각 화면의 "내 유형 카드"를 비교해주세요.</p>
+
+  <div class="card">
+    <div class="card-grid">
+      <div class="card-label">화면 A</div>
+      <div class="card-label">화면 B</div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;height:500px">
+      <div style="border:2px solid #D6285B;border-radius:12px;overflow:hidden;display:flex;flex-direction:column">
+        <div style="padding:12px;background:#F5F6F8;font-weight:600;font-size:14px;color:#15171C">A · 원래 디자인 (77b3b17)</div>
+        <iframe src="../../original.html" style="flex:1;border:none;min-height:100%"></iframe>
+      </div>
+      <div style="border:2px solid #D6285B;border-radius:12px;overflow:hidden;display:flex;flex-direction:column">
+        <div style="padding:12px;background:#F5F6F8;font-weight:600;font-size:14px;color:#15171C">B · 수정 버전 (현재)</div>
+        <iframe src="../../current.html" style="flex:1;border:none;min-height:100%"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <div class="question">
+    <div class="question-text">1. 어떤 카드의 "내 유형 카드"가 더 카드다운가요? (테두리, 여백, 형태가 명확한 것)</div>
+    <div class="options">
+      <label class="option"><input type="radio" name="q1" value="A"> A · 원래 디자인 (테두리/여백 명확)</label>
+      <label class="option"><input type="radio" name="q1" value="B"> B · 수정 버전 (여백/형태 균형)</label>
+      <label class="option"><input type="radio" name="q1" value="both"> 둘 다 괜찮음</label>
+      <label class="option"><input type="radio" name="q1" value="neither"> 둘 다 아님</label>
+    </div>
+  </div>
+
+  <div class="question">
+    <div class="question-text">2. 내용이 너무 많다고 느끼는 카드는?</div>
+    <div class="options">
+      <label class="option"><input type="radio" name="q2" value="A"> A · 원래 디자인 (더 많음)</label>
+      <label class="option"><input type="radio" name="q2" value="B"> B · 수정 버전 (더 많음)</label>
+      <label class="option"><input type="radio" name="q2" value="same"> 둘 다 비슷함</label>
+      <label class="option"><input type="radio" name="q2" value="neither"> 둘 다 적음</label>
+    </div>
+  </div>
+
+  <div class="question">
+    <div class="question-text">3. 어떤 카드가 관심사를 한눈에 파악하기 쉬운가요?</div>
+    <div class="options">
+      <label class="option"><input type="radio" name="q3" value="A"> A · 원래 디자인</label>
+      <label class="option"><input type="radio" name="q3" value="B"> B · 수정 버전</label>
+      <label class="option"><input type="radio" name="q3" value="same"> 둘 다 비슷함</label>
+      <label class="option"><input type="radio" name="q3" value="neither"> 둘 다 아님</label>
+    </div>
+  </div>
+
+  <div class="question">
+    <div class="question-text">4. (객관식) 카드 안에 어떤 내용이 들어가야 한다고 생각하나요? <span class="note">(예: 유형명, 비율, 설명 등)</span></div>
+    <div class="options">
+      <label class="option"><input type="radio" name="q4" value="type_only"> 유형명만</label>
+      <label class="option"><input type="radio" name="q4" value="type_plus_ratio"> 유형명 + 비율</label>
+      <label class="option"><input type="radio" name="q4" value="type_plus_details"> 유형명 + 비율 + 설명</label>
+      <label class="option"><input type="radio" name="q4" value="type_plus_topics"> 유형명 + 주제별 비율</label>
+      <label class="option"><input type="radio" name="q4" value="none"> 없음 (간결하게)</label>
+    </div>
+  </div>
+
+  <div class="question">
+    <div class="question-text">5. 전체 화면의 가독성에 대한 의견</div>
+    <div class="options">
+      <label class="option"><input type="radio" name="q5" value="A"> A · 원래 디자인</label>
+      <label class="option"><input type="radio" name="q5" value="B"> B · 수정 버전</label>
+      <label class="option"><input type="radio" name="q5" value="same"> 둘 다 비슷함</label>
+      <label class="option"><input type="radio" name="q5" value="other"> 기타</label>
+    </div>
+  </div>
+
+  <button class="submit-btn" onclick="submitForm()">설문 제출</button>
+
+  <div class="result" id="result">
+    <h3>✅ 감사합니다!</h3>
+    <p>귀중한 피드백이 저장되었습니다.</p>
+  </div>
+
+  <script>
+    function submitForm() {
+      const form = document.querySelector('form');
+      if (!form) {
+        alert('설문Submit!');
+        return;
+      }
+      
+      const result = {
+        timestamp: new Date().toISOString(),
+        q1: document.querySelector('input[name="q1"]:checked')?.value || 'none',
+        q2: document.querySelector('input[name="q2"]:checked')?.value || 'none',
+        q3: document.querySelector('input[name="q3"]:checked')?.value || 'none',
+        q4: document.querySelector('input[name="q4"]:checked')?.value || 'none',
+        q5: document.querySelector('input[name="q5"]:checked')?.value || 'none',
+        userAgent: navigator.userAgent,
+        language: navigator.language,
+        screenWidth: screen.width,
+        screenHeight: screen.height,
+      };
+      
+      // Save to localStorage for demo (in production, would send to server)
+      const saved = JSON.parse(localStorage.getItem('card_feedback') || '[]');
+      saved.push(result);
+      localStorage.setItem('card_feedback', JSON.stringify(saved));
+      
+      document.getElementById('result').classList.add('show');
+    }
+  </script>
+</body>
+</html>
