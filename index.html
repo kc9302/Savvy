@@ -203,6 +203,10 @@ textarea{width:100%;min-height:240px;font:13px/1.5 ui-monospace,Menlo,Consolas,m
 <section aria-labelledby="chH">
       <h2 id="chH">저장 빈도</h2>
       <div class="bars" id="chart" aria-label="저장 빈도 막대 그래프"></div>
+      <div class="seg" role="group" aria-label="집계 단위">
+        <button class="btn sm" id="mM" type="button" aria-pressed="true">월별</button>
+        <button class="btn sm" id="mD" type="button" aria-pressed="false">일별(최근 180일)</button>
+      </div>
       <div class="rng"><span id="r0"></span><span id="r1"></span></div>
       <p id="chartInfo"></p>
     </section>
